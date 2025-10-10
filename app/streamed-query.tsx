@@ -370,13 +370,13 @@ export default function StreamedQueryScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      className="bg-codemotion-gray-50 flex-1">
+      className="flex-1 bg-codemotion-gray-50">
       {/* Header */}
       <View className="bg-codemotion-navy px-6 pb-6 pt-6">
         <View>
           <View className="flex-row items-center justify-between">
             <View>
-              <Text className="text-codemotion-white text-3xl font-bold">Streamed Query</Text>
+              <Text className="text-3xl font-bold text-codemotion-white">Streamed Query</Text>
               <Text className="text-codemotion-gray-50">TanStack Query AsyncIterable</Text>
             </View>
             <View className="items-center">
@@ -389,7 +389,7 @@ export default function StreamedQueryScreen() {
                       : 'bg-codemotion-yellow'
                 }`}
               />
-              <Text className="text-codemotion-white mt-1 text-xs font-medium">
+              <Text className="mt-1 text-xs font-medium text-codemotion-white">
                 {serverStatus === 'online'
                   ? 'Online'
                   : serverStatus === 'offline'
@@ -402,16 +402,16 @@ export default function StreamedQueryScreen() {
       </View>
       {/* Server Status Alert */}
       {serverStatus === 'offline' && (
-        <View className="border-codemotion-red mx-4 mt-4 rounded-lg border bg-red-100 p-3">
-          <Text className="text-codemotion-red text-sm font-semibold">⚠️ Server Offline</Text>
-          <Text className="text-codemotion-red mt-1 text-xs">
+        <View className="mx-4 mt-4 rounded-lg border border-codemotion-red bg-red-100 p-3">
+          <Text className="text-sm font-semibold text-codemotion-red">⚠️ Server Offline</Text>
+          <Text className="mt-1 text-xs text-codemotion-red">
             Please run: node simple-server.js
           </Text>
         </View>
       )}
       ){/* Refetch Mode Selector */}
-      <View className="border-codemotion-gray-50 bg-codemotion-white mx-4 mt-4 rounded-lg border p-3 shadow-sm">
-        <Text className="text-codemotion-navy mb-2 text-sm font-semibold">Refetch Mode:</Text>
+      <View className="mx-4 mt-4 rounded-lg border border-codemotion-gray-50 bg-codemotion-white p-3 shadow-sm">
+        <Text className="mb-2 text-sm font-semibold text-codemotion-navy">Refetch Mode:</Text>
         <View className="flex-row justify-around">
           {(['reset', 'append', 'replace'] as const).map((mode) => (
             <TouchableOpacity
@@ -420,7 +420,7 @@ export default function StreamedQueryScreen() {
               className={`rounded-lg px-3 py-2 ${
                 refetchMode === mode
                   ? 'bg-codemotion-blue'
-                  : 'border-codemotion-gray-50 bg-codemotion-gray-50 border'
+                  : 'border border-codemotion-gray-50 bg-codemotion-gray-50'
               }`}>
               <Text
                 className={`text-xs font-semibold ${
@@ -431,7 +431,7 @@ export default function StreamedQueryScreen() {
             </TouchableOpacity>
           ))}
         </View>
-        <Text className="text-codemotion-gray-200 mt-2 text-xs">
+        <Text className="mt-2 text-xs text-codemotion-gray-200">
           {refetchMode === 'reset' && '🔄 Clears data and goes to pending on refetch'}
           {refetchMode === 'append' && '➕ Appends new data to existing'}
           {refetchMode === 'replace' && '🔁 Replaces all data when stream ends'}
@@ -445,7 +445,7 @@ export default function StreamedQueryScreen() {
         {/* Sample Prompts */}
         {messages.length === 0 && (
           <View className="p-4">
-            <Text className="text-codemotion-navy mb-3 text-sm font-semibold">
+            <Text className="mb-3 text-sm font-semibold text-codemotion-navy">
               Try these examples:
             </Text>
             {samplePrompts.map((sample, index) => (
@@ -481,30 +481,30 @@ export default function StreamedQueryScreen() {
             <View key={message.id} className="mb-4">
               {message.type === 'user' ? (
                 <View className="flex-row justify-end">
-                  <View className="bg-codemotion-blue max-w-[80%] rounded-2xl rounded-tr-sm px-4 py-3">
-                    <Text className="text-codemotion-white font-medium">{message.content}</Text>
+                  <View className="max-w-[80%] rounded-2xl rounded-tr-sm bg-codemotion-blue px-4 py-3">
+                    <Text className="font-medium text-codemotion-white">{message.content}</Text>
                   </View>
                 </View>
               ) : (
                 <View className="flex-row">
-                  <View className="border-codemotion-orange bg-codemotion-yellow mr-2 h-8 w-8 items-center justify-center rounded-full border">
+                  <View className="mr-2 h-8 w-8 items-center justify-center rounded-full border border-codemotion-orange bg-codemotion-yellow">
                     <FontAwesome name="magic" size={16} color="#ff5c00" />
                   </View>
                   <View className="flex-1">
-                    <View className="border-codemotion-gray-50 bg-codemotion-white max-w-[90%] rounded-2xl rounded-tl-sm border p-4 shadow-sm">
+                    <View className="max-w-[90%] rounded-2xl rounded-tl-sm border border-codemotion-gray-50 bg-codemotion-white p-4 shadow-sm">
                       {Array.isArray(message.content)
                         ? message.content
                             .filter((chunk) => chunk.trim() !== '') // Filter out empty chunks
                             .map((chunk, chunkIndex, filteredArray) => (
                               <Text
                                 key={chunkIndex}
-                                className="text-codemotion-navy leading-relaxed">
+                                className="leading-relaxed text-codemotion-navy">
                                 {chunk}
                                 {chunkIndex < filteredArray.length - 1 ? ' ' : ''}
                               </Text>
                             ))
                         : message.content.trim() && (
-                            <Text className="text-codemotion-navy leading-relaxed">
+                            <Text className="leading-relaxed text-codemotion-navy">
                               {message.content}
                             </Text>
                           )}
@@ -512,23 +512,23 @@ export default function StreamedQueryScreen() {
                       {/* Typing Indicator */}
                       {message.streaming && (
                         <View className="mt-2 flex-row">
-                          <View className="bg-codemotion-orange mr-1 h-2 w-2 rounded-full" />
-                          <View className="bg-codemotion-orange mr-1 h-2 w-2 rounded-full" />
-                          <View className="bg-codemotion-orange h-2 w-2 rounded-full" />
+                          <View className="mr-1 h-2 w-2 rounded-full bg-codemotion-orange" />
+                          <View className="mr-1 h-2 w-2 rounded-full bg-codemotion-orange" />
+                          <View className="h-2 w-2 rounded-full bg-codemotion-orange" />
                         </View>
                       )}
                     </View>
 
                     {/* Stream Status */}
                     <View className="mt-2 flex-row items-center justify-between px-2">
-                      <Text className="text-codemotion-gray-200 text-xs">
+                      <Text className="text-xs text-codemotion-gray-200">
                         {message.streaming
                           ? `Streaming... (${Array.isArray(message.content) ? message.content.length : 0} chunks)`
                           : `Complete (${Array.isArray(message.content) ? message.content.length : 0} chunks)`}
                       </Text>
                       {!message.streaming && index === messages.length - 1 && (
                         <TouchableOpacity onPress={handleRefetch}>
-                          <Text className="text-codemotion-blue text-xs font-semibold">
+                          <Text className="text-xs font-semibold text-codemotion-blue">
                             Refetch
                           </Text>
                         </TouchableOpacity>
@@ -544,7 +544,7 @@ export default function StreamedQueryScreen() {
           {chatQuery.status === 'pending' && currentPrompt && (
             <View className="items-center py-8">
               <ActivityIndicator size="large" color="#0555fa" />
-              <Text className="text-codemotion-navy mt-2 font-medium">
+              <Text className="mt-2 font-medium text-codemotion-navy">
                 Waiting for first chunk...
               </Text>
             </View>
@@ -552,14 +552,14 @@ export default function StreamedQueryScreen() {
         </View>
       </ScrollView>
       {/* Input Section */}
-      <View className="border-codemotion-gray-50 bg-codemotion-white border-t p-4">
+      <View className="border-t border-codemotion-gray-50 bg-codemotion-white p-4">
         <View className="flex-row items-center">
           <TextInput
             value={userInput}
             onChangeText={setUserInput}
             placeholder={serverStatus === 'online' ? 'Ask me anything...' : 'Server offline'}
             placeholderTextColor="#9e9e9e"
-            className="border-codemotion-gray-50 text-codemotion-navy mr-2 flex-1 rounded-full border bg-gray-50 px-4 py-3"
+            className="mr-2 flex-1 rounded-full border border-codemotion-gray-50 bg-gray-50 px-4 py-3 text-codemotion-navy"
             editable={chatQuery.fetchStatus !== 'fetching' && serverStatus === 'online'}
             onSubmitEditing={handleSendMessage}
           />
@@ -584,30 +584,30 @@ export default function StreamedQueryScreen() {
           ) : (
             <TouchableOpacity
               onPress={resetChat}
-              className="bg-codemotion-gray-100 rounded-full p-3">
+              className="rounded-full bg-codemotion-gray-100 p-3">
               <MaterialIcons name="refresh" size={20} color="#0e1e30" />
             </TouchableOpacity>
           )}
         </View>
 
         {/* Technical Info */}
-        <View className="border-codemotion-deepNavy bg-codemotion-deepNavy mt-3 rounded-lg border p-3">
-          <Text className="text-codemotion-yellow mb-1 text-xs font-semibold">📊 Query Status</Text>
-          <Text className="text-codemotion-gray-50 text-xs">
+        <View className="mt-3 rounded-lg border border-codemotion-deepNavy bg-codemotion-deepNavy p-3">
+          <Text className="mb-1 text-xs font-semibold text-codemotion-yellow">📊 Query Status</Text>
+          <Text className="text-xs text-codemotion-gray-50">
             Status: {chatQuery.status} | Fetch: {chatQuery.fetchStatus}
           </Text>
-          <Text className="text-codemotion-gray-50 text-xs">
+          <Text className="text-xs text-codemotion-gray-50">
             Data: {chatQuery.data ? `${chatQuery.data.length} chunks` : 'none'}
           </Text>
-          <Text className="text-codemotion-blue text-xs font-medium">
+          <Text className="text-xs font-medium text-codemotion-blue">
             Connection: {connectionStatus}
           </Text>
           {chatQuery.error && (
-            <Text className="text-codemotion-red mt-1 text-xs font-medium">
+            <Text className="mt-1 text-xs font-medium text-codemotion-red">
               Error: {chatQuery.error.message}
             </Text>
           )}
-          <Text className="text-codemotion-gray-50 mt-1 text-xs">
+          <Text className="mt-1 text-xs text-codemotion-gray-50">
             Mode: {refetchMode} | Server: {serverStatus}
           </Text>
         </View>
