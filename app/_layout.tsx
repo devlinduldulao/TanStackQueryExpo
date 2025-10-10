@@ -84,22 +84,22 @@ export default function RootLayout() {
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Drawer
             screenOptions={{
-              headerTintColor: codemotionColors.navy,
+              headerTintColor: codemotionColors.white,
               headerStyle: {
-                backgroundColor: codemotionColors.white,
+                backgroundColor: codemotionColors.navy,
                 borderBottomWidth: 1,
-                borderBottomColor: codemotionColors.gray50,
+                borderBottomColor: codemotionColors.darkBlue,
               },
               drawerActiveTintColor: codemotionColors.orange,
-              drawerInactiveTintColor: codemotionColors.gray100,
-              drawerActiveBackgroundColor: codemotionColors.gray50,
+              drawerInactiveTintColor: codemotionColors.gray50,
+              drawerActiveBackgroundColor: codemotionColors.darkBlue,
               drawerStyle: {
-                backgroundColor: codemotionColors.white,
+                backgroundColor: codemotionColors.deepNavy,
                 borderRightColor: codemotionColors.blue,
                 borderRightWidth: 2,
               },
-              // Set a transparent overlay color to prevent dark overlay on startup
-              overlayColor: 'rgba(14, 30, 48, 0.3)',
+              // Dark overlay to match the theme
+              overlayColor: 'rgba(14, 30, 48, 0.5)',
             }}
             // Set default state to closed to avoid overlay issues
             initialRouteName="index"
