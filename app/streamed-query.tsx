@@ -142,7 +142,7 @@ export default function StreamedQueryScreen() {
        * @yields {string} - Individual text chunks as they arrive from server
        * @throws {Error} - Network errors or cancellation errors
        */
-      queryFn: async function* (context) {
+      streamFn: async function* (context) {
         console.log('🚀 Starting streaming for:', currentPrompt);
 
         try {
@@ -409,7 +409,8 @@ export default function StreamedQueryScreen() {
           </Text>
         </View>
       )}
-      ){/* Refetch Mode Selector */}
+
+      {/* Refetch Mode Selector */}
       <View className="mx-4 mt-4 rounded-lg border border-codemotion-gray-50 bg-codemotion-white p-3 shadow-sm">
         <Text className="mb-2 text-sm font-semibold text-codemotion-navy">Refetch Mode:</Text>
         <View className="flex-row justify-around">

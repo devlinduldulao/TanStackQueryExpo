@@ -3,7 +3,6 @@ import {
   View,
   Image,
   ScrollView,
-  SafeAreaView,
   StatusBar,
   useWindowDimensions,
   TouchableOpacity,
@@ -13,6 +12,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { scheduleOnRN } from 'react-native-worklets';
 import Animated, {
   FadeInDown,
   FadeInUp,
@@ -130,7 +131,7 @@ export default function HomeScreen() {
         },
         (finished) => {
           if (finished) {
-            runOnJS(startPulseAnimation)();
+            scheduleOnRN(startPulseAnimation);
           }
         }
       )
@@ -153,7 +154,7 @@ export default function HomeScreen() {
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       />
-      <SafeAreaView className="flex-1">
+      <SafeAreaProvider className="flex-1">
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           className="flex-1"
@@ -254,7 +255,7 @@ export default function HomeScreen() {
             </Animated.View>
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </SafeAreaProvider>
     </>
   );
 }
