@@ -23,7 +23,6 @@ import Animated, {
   withDelay,
   withTiming,
   Easing,
-  interpolateColor,
   useDerivedValue,
   runOnJS,
 } from 'react-native-reanimated';
@@ -48,18 +47,8 @@ export default function HomeScreen() {
   const scale = useSharedValue(1);
   const translateY = useSharedValue(0);
   const pulseValue = useSharedValue(1);
-  const colorProgress = useSharedValue(0);
   const orbitRadius = useSharedValue(0);
   const orbitAngle = useSharedValue(0);
-
-  // Derived values for color animation
-  const animatedColor = useDerivedValue(() => {
-    return interpolateColor(
-      colorProgress.value,
-      [0, 0.2, 0.4, 0.6, 0.8, 1],
-      ['#484dfc', '#7189ff', '#a0b9ff', '#ccd8ff', '#484dfc', '#484dfc']
-    );
-  });
 
   // Orbit animation for the floating elements
   const orbitX = useDerivedValue(() => {
@@ -81,12 +70,6 @@ export default function HomeScreen() {
     return {
       transform: [{ scale: pulseValue.value }],
       opacity: 2 - pulseValue.value, // Fade out as it grows
-    };
-  });
-
-  const colorAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      backgroundColor: animatedColor.value,
     };
   });
 
@@ -113,9 +96,6 @@ export default function HomeScreen() {
 
     // Rotation animation
     rotation.value = withRepeat(withTiming(1, { duration: 6000, easing: Easing.linear }), -1);
-
-    // Color cycle animation
-    colorProgress.value = withRepeat(withTiming(1, { duration: 3000 }), -1);
 
     // Orbit animation
     orbitRadius.value = withTiming(80, { duration: 1000 });
@@ -159,9 +139,9 @@ export default function HomeScreen() {
 
   return (
     <>
-      <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
+      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <LinearGradient
-        colors={['#eef0ff', '#f7eded', '#faf8f8']}
+        colors={['#0e1e30', '#162f4b', '#044389']}
         style={{
           position: 'absolute',
           left: 0,
@@ -183,20 +163,20 @@ export default function HomeScreen() {
             <Animated.View
               entering={FadeInUp.delay(300).springify()}
               className="absolute right-5 top-16">
-              <View className="h-24 w-24 rounded-full bg-appBlue-40/40 blur-sm" />
+              <View className="h-24 w-24 rounded-full bg-codemotion-orange/40 blur-sm" />
             </Animated.View>
 
             <Animated.View
               entering={FadeInUp.delay(400).springify()}
               className="absolute left-8 top-32">
-              <View className="h-16 w-16 rounded-full bg-appBlue-60/40 blur-sm" />
+              <View className="h-16 w-16 rounded-full bg-codemotion-yellow/40 blur-sm" />
             </Animated.View>
 
             {/* Main card */}
             <Animated.View
               entering={FadeInDown.delay(200).springify()}
               style={floatingElementStyle}
-              className="w-full max-w-md items-center overflow-hidden rounded-3xl border border-white/60 bg-appAccent-0/60 p-8 shadow-xl backdrop-blur-md">
+              className="w-full max-w-md items-center overflow-hidden rounded-3xl border-2 border-codemotion-orange bg-codemotion-white/95 p-8 shadow-xl backdrop-blur-md">
               <View className="mb-6 items-center">
                 <Animated.View style={logoAnimatedStyle}>
                   <Image
@@ -205,47 +185,45 @@ export default function HomeScreen() {
                     resizeMode="contain"
                   />
                 </Animated.View>
-                <Text className="mb-2 text-4xl font-bold text-appBlack-100">App.js Conf</Text>
+                <Text className="mb-2 text-4xl font-bold text-codemotion-navy">Codemotion</Text>
                 <View className="flex-row items-center">
-                  <Text className="text-xl text-appBlack-80">TanStack Query in Expo demo</Text>
+                  <Text className="text-xl text-codemotion-darkBlue">
+                    TanStack Query in Expo demo
+                  </Text>
                 </View>
               </View>
 
-              <View className="my-6 h-0.5 w-full bg-appBlue-40" />
+              <View className="my-6 h-0.5 w-full bg-codemotion-orange" />
 
               <View className="w-full space-y-4">
                 <Animated.View
                   entering={FadeInDown.delay(500).springify()}
                   className="flex-row items-center">
-                  <Text className="ml-3 text-xl text-appBlue-100">By: @DevlinDuldulao</Text>
+                  <Text className="ml-3 text-xl text-codemotion-blue">By: @DevlinDuldulao</Text>
                 </Animated.View>
 
                 <Animated.View
                   entering={FadeInDown.delay(600).springify()}
                   className="flex-row items-center">
-                  <Text className="ml-3 text-lg text-appBlack-80">Crayon Consulting</Text>
+                  <Text className="ml-3 text-lg text-codemotion-navy">Crayon Consulting</Text>
                 </Animated.View>
               </View>
 
               {/* Animated footer with pulsing effect */}
               <View className="mt-8 w-full items-center">
-                <Animated.View
-                  className="h-16 w-16 items-center justify-center overflow-visible rounded-full"
-                  style={colorAnimatedStyle}>
+                <Animated.View className="h-16 w-16 items-center justify-center overflow-visible rounded-full bg-codemotion-orange">
                   <Animated.View
-                    className="absolute h-16 w-16 rounded-full bg-appBlue-80/60 blur-sm"
+                    className="absolute h-16 w-16 rounded-full bg-codemotion-yellow/60 blur-sm"
                     style={pulseAnimatedStyle}
                   />
-                  <Text className="text-xl text-white">2025</Text>
+                  <Text className="text-xl text-codemotion-white">2025</Text>
                 </Animated.View>
               </View>
             </Animated.View>
 
             {/* Orbiting elements */}
             <Animated.View style={orbitAnimatedStyle} className="absolute z-10">
-              <Animated.View
-                style={colorAnimatedStyle}
-                className="h-8 w-8 items-center justify-center rounded-full">
+              <Animated.View className="h-8 w-8 items-center justify-center rounded-full bg-codemotion-blue">
                 <Ionicons name="rocket" size={18} color="white" />
               </Animated.View>
             </Animated.View>
@@ -254,13 +232,13 @@ export default function HomeScreen() {
             <Animated.View
               entering={FadeInUp.delay(500).springify()}
               className="absolute bottom-20 left-10">
-              <View className="h-32 w-32 rounded-full bg-appAccent-100/30 blur-sm" />
+              <View className="h-32 w-32 rounded-full bg-codemotion-blue/30 blur-sm" />
             </Animated.View>
 
             <Animated.View
               entering={FadeInUp.delay(600).springify()}
               className="absolute bottom-32 right-0">
-              <View className="h-24 w-24 rounded-full bg-appBlue-40/30 blur-md" />
+              <View className="h-24 w-24 rounded-full bg-codemotion-orange/30 blur-md" />
             </Animated.View>
 
             {/* Swipe indicator text */}
@@ -269,7 +247,9 @@ export default function HomeScreen() {
                 onPress={() => {
                   navigation.openDrawer();
                 }}>
-                <Text className="text-appBlue-100 opacity-80">Swipe right to explore demos →</Text>
+                <Text className="text-codemotion-yellow opacity-90">
+                  Swipe right to explore demos →
+                </Text>
               </TouchableOpacity>
             </Animated.View>
           </View>

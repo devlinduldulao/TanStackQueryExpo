@@ -14,26 +14,50 @@ module.exports = {
         spin: 'spin 1s linear infinite',
       },
       colors: {
-        // App.js Conf colors
+        // Codemotion Conference Colors
+        codemotion: {
+          // Primary colors
+          navy: '#0e1e30', // Main dark blue background
+          orange: '#ff5c00', // Primary orange/CTA color
+          blue: '#0555fa', // Bright blue accent
+          darkBlue: '#044389', // Secondary dark blue
+          deepNavy: '#162f4b', // Deep navy for sections
+          yellow: '#f9dc5c', // Accent yellow
+          white: '#ffffff', // White
+          red: '#f44336',
+          purple: '#9c27b0',
+          lime: '#cddc39',
+
+          // Grays
+          gray: {
+            50: '#e0e0e0',
+            100: '#9e9e9e',
+            200: '#616161',
+            300: '#424242',
+            400: '#212121',
+          },
+        },
+
+        // Keep existing App.js Conf colors for backwards compatibility
         appBlue: {
-          100: '#484dfc', // --primary-blue--100
-          80: '#7189ff', // --primary-blue--80
-          60: '#a0b9ff', // --primary-blue--60
-          40: '#ccd8ff', // --primary-blue--40
-          20: '#eef0ff', // --primary-blue--20
+          100: '#484dfc',
+          80: '#7189ff',
+          60: '#a0b9ff',
+          40: '#ccd8ff',
+          20: '#eef0ff',
         },
         appBlack: {
-          100: '#261930', // --black--100
-          80: '#50415b', // --black--80
-          60: '#877b91', // --black--60
-          40: '#cac3d1', // --black--40
-          20: '#e6e2ed', // --black--20
+          100: '#261930',
+          80: '#50415b',
+          60: '#877b91',
+          40: '#cac3d1',
+          20: '#e6e2ed',
         },
         appAccent: {
-          120: '#ff5a5a', // --accent-color--120
-          100: '#f8d9d6', // --accent-color--100
-          50: '#f7eded', // --accent-color--50
-          0: '#faf8f8', // --accent-color--0
+          120: '#ff5a5a',
+          100: '#f8d9d6',
+          50: '#f7eded',
+          0: '#faf8f8',
         },
       },
     },

@@ -18,21 +18,31 @@ import { Platform } from 'react-native';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // 3 total attempts (1 initial + 2 retries)
-      retry: 2,
+      // Custom retry logic that handles streaming queries
+      retry: (failureCount, error) => {
+        // Don't retry streaming queries or network errors
+        if (error?.message?.includes('stream') || error?.name === 'AbortError') {
+          return false;
+        }
+        // Only retry up to 2 times for other queries
+        return failureCount < 2;
+      },
       // 0s -> 1s, 1s → 5s. Little resiliency 😁
-      retryDelay: attemptIndex => Math.min(1000 * 5 ** attemptIndex, 10000),
-    }
-  }
+      retryDelay: (attemptIndex) => Math.min(1000 * 5 ** attemptIndex, 10000),
+    },
+  },
 });
 
-const appjsConfColors = {
-  primaryBlue100: '#484dfc',
-  primaryBlue80: '#7189ff',
-  primaryBlue20: '#eef0ff',
-  appBlack100: '#261930',
-  appBlack60: '#877b91',
-  appAccent0: '#faf8f8',
+const codemotionColors = {
+  navy: '#0e1e30',
+  orange: '#ff5c00',
+  blue: '#0555fa',
+  darkBlue: '#044389',
+  deepNavy: '#162f4b',
+  yellow: '#f9dc5c',
+  white: '#ffffff',
+  gray50: '#e0e0e0',
+  gray100: '#9e9e9e',
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -74,19 +84,22 @@ export default function RootLayout() {
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Drawer
             screenOptions={{
-              headerTintColor: appjsConfColors.appBlack100,
+              headerTintColor: codemotionColors.navy,
               headerStyle: {
-                backgroundColor: appjsConfColors.appAccent0,
+                backgroundColor: codemotionColors.white,
+                borderBottomWidth: 1,
+                borderBottomColor: codemotionColors.gray50,
               },
-              drawerActiveTintColor: appjsConfColors.primaryBlue100,
-              drawerInactiveTintColor: appjsConfColors.appBlack60,
+              drawerActiveTintColor: codemotionColors.orange,
+              drawerInactiveTintColor: codemotionColors.gray100,
+              drawerActiveBackgroundColor: codemotionColors.gray50,
               drawerStyle: {
-                backgroundColor: appjsConfColors.primaryBlue20,
-                borderRightColor: appjsConfColors.primaryBlue80,
-                borderRightWidth: 1,
+                backgroundColor: codemotionColors.white,
+                borderRightColor: codemotionColors.blue,
+                borderRightWidth: 2,
               },
               // Set a transparent overlay color to prevent dark overlay on startup
-              overlayColor: 'transparent',
+              overlayColor: 'rgba(14, 30, 48, 0.3)',
             }}
             // Set default state to closed to avoid overlay issues
             initialRouteName="index"
@@ -156,6 +169,16 @@ export default function RootLayout() {
                 title: 'Optimistic Update',
                 drawerIcon: ({ color, size }) => (
                   <Ionicons name="flash-outline" size={size} color={color} />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="streamed-query"
+              options={{
+                drawerLabel: 'Streamed Query',
+                title: 'Streamed Query',
+                drawerIcon: ({ color, size }) => (
+                  <Ionicons name="radio-outline" size={size} color={color} />
                 ),
               }}
             />

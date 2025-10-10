@@ -1,3 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Codemotion Conference Theme Variables */
+:root {
+  /* Grays */
+  --bricks-color-46121d: #e0e0e0;
+  --bricks-color-0cc9b8: #9e9e9e;
+  --bricks-color-938852: #616161;
+  --bricks-color-c10342: #424242;
+  --bricks-color-808254: #212121;
+  
+  /* Yellows */
+  --bricks-color-0ac237: #ffeb3b;
+  --bricks-color-f54b62: #ffc107;
+  
+  /* Oranges */
+  --bricks-color-3ecef8: #ff9800;
+  --bricks-color-d68581: #ff5722;
+  
+  /* Reds */
+  --bricks-color-5e5d75: #f44336;
+  
+  /* Purples */
+  --bricks-color-aa920a: #9c27b0;
+  
+  /* Blues */
+  --bricks-color-0e3e47: #2196f3;
+  --bricks-color-8b0bf0: #03a9f4;
+  --bricks-color-cb1b4d: #81D4FA;
+  
+  /* Greens */
+  --bricks-color-a1d1da: #4caf50;
+  --bricks-color-4efe0d: #8bc34a;
+  --bricks-color-1a5ae8: #cddc39;
+  
+  /* Codemotion Brand Colors */
+  --bricks-color-dsqzwd: #0e1e30; /* Navy */
+  --bricks-color-awxtcl: #ff5c00; /* Orange */
+  --bricks-color-hbxsgm: #ffffff; /* White */
+  --bricks-color-dgkrbu: #0555fa; /* Blue */
+  --bricks-color-kocnxq: #044389; /* Dark Blue */
+  --bricks-color-tareec: #f9dc5c; /* Yellow */
+  --bricks-color-lclnrk: #162f4b; /* Deep Navy */
+}
