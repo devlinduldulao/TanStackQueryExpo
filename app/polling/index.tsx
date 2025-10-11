@@ -13,7 +13,7 @@ export default function PollingScreen() {
   const [isValidInput, setIsValidInput] = useState(true);
 
   const todoListQuery = useQuery({
-    queryKey: ["todos"],
+    queryKey: ['todos'],
     queryFn: todoService.getTodos,
     refetchInterval: Number(inputValue),
   });
@@ -84,7 +84,7 @@ export default function PollingScreen() {
             shadowOpacity: 0.25,
             shadowRadius: 3.84,
           }}>
-          <AntDesign name="pluscircleo" size={24} color="white" />
+          <AntDesign name="plus-circle" size={24} color="white" />
         </TouchableOpacity>
       </Link>
     </View>
