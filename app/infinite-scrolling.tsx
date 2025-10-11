@@ -153,34 +153,34 @@ export default function InfiniteScrollingScreen() {
   // Item renderer
   const renderItem = ({ item }: { item: Commodity }) => (
     <View
-      className="mx-3 mb-4 overflow-hidden rounded-xl bg-white p-4 shadow-md"
+      className="mx-3 mb-4 overflow-hidden rounded-xl bg-codemotion-deepNavy p-4 shadow-md"
       style={{
         height: itemHeight,
-        shadowColor: '#000',
+        shadowColor: '#ff5c00',
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.2,
         shadowRadius: 2,
         elevation: 2,
       }}>
-      <Text className="mb-2 text-2xl font-bold text-indigo-800">{item.name}</Text>
+      <Text className="mb-2 text-2xl font-bold text-codemotion-orange">{item.name}</Text>
 
       <View className="flex-1 justify-between">
         <View className="flex-row justify-between">
-          <View className="w-[48%] rounded-lg bg-indigo-100 p-3">
-            <Text className="text-center font-medium text-indigo-700">
+          <View className="w-[48%] rounded-lg bg-codemotion-blue/20 p-3">
+            <Text className="text-center font-medium text-codemotion-blue">
               Price: ${item.price.toFixed(2)}
             </Text>
           </View>
 
-          <View className="w-[48%] rounded-lg bg-emerald-100 p-3">
-            <Text className="text-center font-medium text-emerald-700">
+          <View className="w-[48%] rounded-lg bg-codemotion-yellow/20 p-3">
+            <Text className="text-center font-medium text-codemotion-yellow">
               Quantity: {item.quantity}
             </Text>
           </View>
         </View>
 
-        <View className="mt-2 rounded-lg bg-amber-50 p-2">
-          <Text className="text-center text-amber-700">ID: {item.id}</Text>
+        <View className="mt-2 rounded-lg bg-codemotion-navy/60 p-2">
+          <Text className="text-center text-codemotion-white">ID: {item.id}</Text>
         </View>
       </View>
     </View>
@@ -188,17 +188,17 @@ export default function InfiniteScrollingScreen() {
 
   const renderHeader = () => (
     <View className="py-4">
-      <Text className="mb-4 text-center text-sm text-gray-500">In Stocks</Text>
+      <Text className="mb-4 text-center text-sm text-codemotion-blue">In Stocks</Text>
 
       {isFetchingPreviousPage ? (
         <View className="items-center p-3">
-          <ActivityIndicator size="small" color="#6366f1" />
-          <Text className="mt-2 text-indigo-600">Loading previous items...</Text>
+          <ActivityIndicator size="small" color="#ff5c00" />
+          <Text className="mt-2 text-codemotion-orange">Loading previous items...</Text>
         </View>
       ) : (
         !hasPreviousPage && (
           <View className="items-center p-3">
-            <Text className="text-gray-500">You're at the beginning 🎉</Text>
+            <Text className="text-codemotion-white">You're at the beginning 🎉</Text>
           </View>
         )
       )}
@@ -209,16 +209,16 @@ export default function InfiniteScrollingScreen() {
     <View className="py-4">
       {isFetchingNextPage ? (
         <View className="items-center p-3">
-          <ActivityIndicator size="small" color="#6366f1" />
-          <Text className="mt-2 text-indigo-600">Loading more items...</Text>
+          <ActivityIndicator size="small" color="#ff5c00" />
+          <Text className="mt-2 text-codemotion-orange">Loading more items...</Text>
         </View>
       ) : hasNextPage ? (
         <View className="items-center p-3">
-          <Text className="font-semibold text-indigo-600">Scroll to load more</Text>
+          <Text className="font-semibold text-codemotion-blue">Scroll to load more</Text>
         </View>
       ) : (
         <View className="items-center p-3">
-          <Text className="text-gray-500">You've reached the end 🏁</Text>
+          <Text className="text-codemotion-white">You've reached the end 🏁</Text>
         </View>
       )}
     </View>
@@ -226,21 +226,23 @@ export default function InfiniteScrollingScreen() {
 
   if (status === 'pending') {
     return (
-      <View className="flex-1 items-center justify-center bg-white">
-        <ActivityIndicator size="large" color="#6366f1" />
-        <Text className="mt-4 font-medium text-indigo-600">Loading... Please wait...</Text>
+      <View className="flex-1 items-center justify-center bg-codemotion-navy">
+        <ActivityIndicator size="large" color="#ff5c00" />
+        <Text className="mt-4 font-medium text-codemotion-orange">Loading... Please wait...</Text>
       </View>
     );
   }
 
   if (status === 'error') {
     return (
-      <View className="flex-1 items-center justify-center bg-white p-4">
-        <Text className="mb-3 text-xl text-red-500">Error loading data</Text>
-        <Text className="mb-6 text-center text-red-400">
+      <View className="flex-1 items-center justify-center bg-codemotion-navy p-4">
+        <Text className="mb-3 text-xl text-red-400">Error loading data</Text>
+        <Text className="mb-6 text-center text-red-300">
           {(error as Error)?.message || 'Unknown error'}
         </Text>
-        <TouchableOpacity className="rounded-lg bg-indigo-600 px-6 py-3" onPress={() => refetch()}>
+        <TouchableOpacity
+          className="rounded-lg bg-codemotion-orange px-6 py-3"
+          onPress={() => refetch()}>
           <Text className="text-center font-semibold text-white">Try Again</Text>
         </TouchableOpacity>
       </View>
@@ -248,7 +250,7 @@ export default function InfiniteScrollingScreen() {
   }
 
   return (
-    <View className="flex-1 bg-gray-50">
+    <View className="flex-1 bg-codemotion-navy">
       <FlatList
         ref={flatListRef}
         data={allItems}
