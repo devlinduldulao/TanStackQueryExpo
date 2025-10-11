@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { LegendList, LegendListRef, LegendListRenderItemProps } from "@legendapp/list"
+import { LegendList, LegendListRef, LegendListRenderItemProps } from '@legendapp/list';
 
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Octicons from '@expo/vector-icons/Octicons';
 import commodityService from '@/services/commodity';
-import Spinner from '@/components/Spinner';
+import PulsingDot from '@/components/PulsingDot';
 import { Commodity } from '@/models';
 export default function PaginationScreen() {
   const [page, setPage] = useState(1);
   const pageSize = 10;
 
   const { data, isRefetching, isFetching, isError, error, isPending } = useQuery({
-    queryKey: ["commodities", page, pageSize],
+    queryKey: ['commodities', page, pageSize],
     queryFn: () => commodityService.getCommodities(page, pageSize),
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 1, // 1 minute
@@ -80,8 +80,8 @@ export default function PaginationScreen() {
   return (
     <View className="flex-1 bg-gray-50 p-4">
       <View className="mb-4 flex-row items-center justify-between">
-        <Text className="text-2xl font-bold text-gray-800">Page {page}</Text>
-        {(isFetching || isRefetching) && <Spinner />}
+        <Text className="text-2xl font-bold text-codemotion-darkBlue">Page {page}</Text>
+        {(isFetching || isRefetching) && <PulsingDot />}
       </View>
 
       {isError && (
