@@ -53,10 +53,10 @@ export default function PaginationScreen() {
   const renderPagination = () => (
     <View className="mb-6 mt-4 flex-row items-center justify-between">
       <TouchableOpacity
-        className={`flex-row items-center rounded-lg px-4 py-2 ${page === 1 || isFetching ? 'bg-codemotion-navy/30 opacity-50' : 'bg-codemotion-orange'}`}
+        className="flex-row items-center rounded-lg bg-codemotion-orange px-4 py-2"
         onPress={() => handleSetPage(page - 1)}
         disabled={page === 1 || isFetching}>
-        <Octicons name="chevron-left" size={16} color="#ffffff" />
+        {!(page === 1 || isFetching) && <Octicons name="chevron-left" size={16} color="#ffffff" />}
         <Text className="ml-1 text-white">Previous</Text>
       </TouchableOpacity>
 
@@ -68,11 +68,13 @@ export default function PaginationScreen() {
       </View>
 
       <TouchableOpacity
-        className={`flex-row items-center rounded-lg px-4 py-2 ${!data?.next || isFetching ? 'bg-codemotion-navy/30 opacity-50' : 'bg-codemotion-orange'}`}
+        className="flex-row items-center rounded-lg bg-codemotion-orange px-4 py-2"
         onPress={() => handleSetPage(page + 1)}
         disabled={!data?.next || isFetching}>
         <Text className="mr-1 text-white">Next</Text>
-        <Octicons name="chevron-right" size={16} color="#ffffff" />
+        {!(!data?.next || isFetching) && (
+          <Octicons name="chevron-right" size={16} color="#ffffff" />
+        )}
       </TouchableOpacity>
     </View>
   );
