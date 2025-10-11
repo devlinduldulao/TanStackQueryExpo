@@ -212,7 +212,7 @@ export default function HomeScreen() {
         ]}
       />
 
-      <SafeAreaProvider className="flex-1">
+      <SafeAreaProvider className="flex-1" edges={['top', 'bottom']}>
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           className="flex-1"
@@ -250,94 +250,97 @@ export default function HomeScreen() {
             </Animated.View>
 
             {/* Main glassmorphic card */}
-            <Animated.View
-              entering={FadeInDown.delay(200).springify()}
-              style={[
-                floatingElementStyle,
-                borderGlowStyle,
-                {
-                  shadowColor: '#ff5c00',
-                  shadowOffset: { width: 0, height: 8 },
-                },
-              ]}
-              className="w-full max-w-md overflow-hidden rounded-3xl border border-codemotion-orange/30 bg-codemotion-deepNavy/40 p-8 backdrop-blur-xl">
-              {/* Gradient overlay for glassmorphism */}
-              <View className="absolute inset-0 bg-gradient-to-b from-codemotion-white/5 to-transparent" />
-
-              {/* Glow effect behind card */}
+            <Animated.View entering={FadeInDown.delay(200).springify()} className="w-full max-w-md">
               <Animated.View
-                style={glowAnimatedStyle}
-                className="absolute -inset-4 rounded-3xl bg-codemotion-orange/20 blur-3xl"
-              />
+                style={[
+                  floatingElementStyle,
+                  borderGlowStyle,
+                  {
+                    shadowColor: '#ff5c00',
+                    shadowOffset: { width: 0, height: 8 },
+                  },
+                ]}
+                className="overflow-hidden rounded-3xl border border-codemotion-orange/30 bg-codemotion-deepNavy/40 p-8 backdrop-blur-xl">
+                {/* Gradient overlay for glassmorphism */}
+                <View className="absolute inset-0 bg-gradient-to-b from-codemotion-white/5 to-transparent" />
 
-              <View className="relative z-10">
-                {/* Logo with scale animation */}
-                <View className="mb-8 items-center">
-                  <Animated.View style={logoAnimatedStyle}>
-                    <View className="rounded-full bg-codemotion-orange/10 p-4">
-                      <Image
-                        source={require('../assets/images/react-logo.png')}
-                        className="h-16 w-16"
-                        resizeMode="contain"
-                      />
-                    </View>
-                  </Animated.View>
-                </View>
+                {/* Glow effect behind card */}
+                <Animated.View
+                  style={glowAnimatedStyle}
+                  className="absolute -inset-4 rounded-3xl bg-codemotion-orange/20 blur-3xl"
+                />
 
-                {/* Main title - Conference style */}
-                <View className="mb-8 items-center">
-                  <Text className="mb-2 text-5xl font-bold uppercase tracking-wider text-codemotion-white">
-                    Codemotion
-                  </Text>
-                  <View className="h-1 w-24 bg-codemotion-orange" />
-                  <Text className="mt-4 text-center text-sm uppercase tracking-widest text-codemotion-gray-50">
-                    Milan 2025
-                  </Text>
-                </View>
+                <View className="relative z-10">
+                  {/* Logo with scale animation */}
+                  <View className="mb-8 items-center">
+                    <Animated.View style={logoAnimatedStyle}>
+                      <View className="rounded-full bg-codemotion-orange/10 p-4">
+                        <Image
+                          source={require('../assets/images/react-logo.png')}
+                          className="h-16 w-16"
+                          resizeMode="contain"
+                        />
+                      </View>
+                    </Animated.View>
+                  </View>
 
-                {/* Description */}
-                <View className="mb-6">
-                  <Text className="text-center text-base leading-relaxed text-codemotion-white/90">
-                    TanStack Query in React Native
-                  </Text>
-                  <Text className="mt-1 text-center text-sm text-codemotion-blue">
-                    Advanced State Management Demo
-                  </Text>
-                </View>
+                  {/* Main title - Conference style */}
+                  <View className="mb-8 items-center">
+                    <Text className="mb-2 text-5xl font-bold uppercase tracking-wider text-codemotion-white">
+                      Codemotion
+                    </Text>
+                    <View className="h-1 w-24 bg-codemotion-orange" />
+                    <Text className="mt-4 text-center text-sm uppercase tracking-widest text-codemotion-gray-50">
+                      Milan 2025
+                    </Text>
+                  </View>
 
-                {/* Divider with glow */}
-                <View className="my-6 flex-row items-center">
-                  <View className="h-px flex-1 bg-gradient-to-r from-transparent via-codemotion-orange to-transparent" />
-                </View>
+                  {/* Description */}
+                  <View className="mb-6">
+                    <Text className="text-center text-base leading-relaxed text-codemotion-white/90">
+                      TanStack Query in React Native
+                    </Text>
+                    <Text className="mt-1 text-center text-sm text-codemotion-blue">
+                      Advanced State Management Demo
+                    </Text>
+                  </View>
 
-                {/* Speaker info - Simple and clean */}
-                <View className="w-full space-y-4">
-                  <Animated.View
-                    entering={FadeInDown.delay(500).springify()}
-                    className="flex-row items-center">
-                    <Text className="ml-3 text-xl text-codemotion-orange">By: @DevlinDuldulao</Text>
-                  </Animated.View>
+                  {/* Divider with glow */}
+                  <View className="my-6 flex-row items-center">
+                    <View className="h-px flex-1 bg-gradient-to-r from-transparent via-codemotion-orange to-transparent" />
+                  </View>
 
-                  <Animated.View
-                    entering={FadeInDown.delay(600).springify()}
-                    className="flex-row items-center">
-                    <Text className="ml-3 text-lg text-codemotion-white">Crayon Consulting</Text>
-                  </Animated.View>
-                </View>
-
-                {/* Year badge with pulse */}
-                <View className="mt-8 items-center">
-                  <Animated.View className="relative">
+                  {/* Speaker info - Simple and clean */}
+                  <View className="w-full space-y-4">
                     <Animated.View
-                      className="absolute -inset-2 rounded-full bg-codemotion-yellow/60 blur-md"
-                      style={pulseAnimatedStyle}
-                    />
-                    <View className="relative h-16 w-16 items-center justify-center rounded-full bg-codemotion-orange">
-                      <Text className="text-xl font-bold text-codemotion-white">2025</Text>
-                    </View>
-                  </Animated.View>
+                      entering={FadeInDown.delay(500).springify()}
+                      className="flex-row items-center">
+                      <Text className="ml-3 text-xl text-codemotion-orange">
+                        By: @DevlinDuldulao
+                      </Text>
+                    </Animated.View>
+
+                    <Animated.View
+                      entering={FadeInDown.delay(600).springify()}
+                      className="flex-row items-center">
+                      <Text className="ml-3 text-lg text-codemotion-white">Crayon Consulting</Text>
+                    </Animated.View>
+                  </View>
+
+                  {/* Year badge with pulse */}
+                  <View className="mt-8 items-center">
+                    <Animated.View className="relative">
+                      <Animated.View
+                        className="absolute -inset-2 rounded-full bg-codemotion-yellow/60 blur-md"
+                        style={pulseAnimatedStyle}
+                      />
+                      <View className="relative h-16 w-16 items-center justify-center rounded-full bg-codemotion-orange">
+                        <Text className="text-xl font-bold text-codemotion-white">2025</Text>
+                      </View>
+                    </Animated.View>
+                  </View>
                 </View>
-              </View>
+              </Animated.View>
             </Animated.View>
 
             {/* Orbiting tech icons */}
@@ -348,17 +351,16 @@ export default function HomeScreen() {
             </Animated.View>
 
             {/* Swipe indicator - Modern style */}
-            <Animated.View
-              style={floatingElementStyle}
-              entering={FadeInUp.delay(800).springify()}
-              className="absolute bottom-8">
-              <TouchableOpacity
-                onPress={() => navigation.openDrawer()}
-                className="flex-row items-center space-x-2 rounded-full border border-codemotion-yellow/30 bg-codemotion-navy/60 px-6 py-3 backdrop-blur-md">
-                <Ionicons name="menu" size={20} color="#f9dc5c" />
-                <Text className="font-semibold text-codemotion-yellow">Explore Demos</Text>
-                <Ionicons name="arrow-forward" size={20} color="#f9dc5c" />
-              </TouchableOpacity>
+            <Animated.View entering={FadeInUp.delay(800).springify()} className="absolute bottom-8">
+              <Animated.View style={floatingElementStyle}>
+                <TouchableOpacity
+                  onPress={() => navigation.openDrawer()}
+                  className="flex-row items-center space-x-2 rounded-full border border-codemotion-yellow/30 bg-codemotion-navy/60 px-6 py-3 backdrop-blur-md">
+                  <Ionicons name="menu" size={20} color="#f9dc5c" />
+                  <Text className="font-semibold text-codemotion-yellow">Explore Demos</Text>
+                  <Ionicons name="arrow-forward" size={20} color="#f9dc5c" />
+                </TouchableOpacity>
+              </Animated.View>
             </Animated.View>
           </View>
         </ScrollView>
