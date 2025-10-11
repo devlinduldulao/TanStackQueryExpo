@@ -25,19 +25,19 @@ export default function PaginationScreen() {
   };
 
   const renderItem = ({ item }: { item: Commodity }) => (
-    <View className="mb-3 overflow-hidden rounded-lg bg-white p-4 shadow-sm">
+    <View className="mb-3 overflow-hidden rounded-lg bg-codemotion-deepNavy p-4 shadow-sm">
       <View className="mb-2 flex-row items-center justify-between">
-        <Text className="text-lg font-semibold text-indigo-700">{item.name}</Text>
-        <View className="rounded-full bg-indigo-100 px-2 py-1">
-          <Text className="text-xs font-medium text-indigo-800">ID: {item.id}</Text>
+        <Text className="text-lg font-semibold text-codemotion-orange">{item.name}</Text>
+        <View className="rounded-full bg-codemotion-blue/20 px-2 py-1">
+          <Text className="text-xs font-medium text-codemotion-blue">ID: {item.id}</Text>
         </View>
       </View>
       <View className="flex-row items-center justify-between">
-        <View className="rounded-md bg-green-50 px-3 py-1">
-          <Text className="text-green-700">${item.price.toFixed(2)}</Text>
+        <View className="rounded-md bg-codemotion-yellow/20 px-3 py-1">
+          <Text className="text-codemotion-yellow">${item.price.toFixed(2)}</Text>
         </View>
-        <View className="rounded-md bg-amber-50 px-3 py-1">
-          <Text className="text-amber-700">Quantity: {item.quantity}</Text>
+        <View className="rounded-md bg-codemotion-blue/20 px-3 py-1">
+          <Text className="text-codemotion-blue">Quantity: {item.quantity}</Text>
         </View>
       </View>
     </View>
@@ -45,8 +45,8 @@ export default function PaginationScreen() {
 
   const renderEmptyState = () => (
     <View className="flex-1 items-center justify-center py-10">
-      <MaterialCommunityIcons name="tray" size={48} color="#d1d5db" />
-      <Text className="mt-4 text-center text-gray-400">No items to display</Text>
+      <MaterialCommunityIcons name="tray" size={48} color="#0555fa" />
+      <Text className="mt-4 text-center text-codemotion-white">No items to display</Text>
     </View>
   );
 
@@ -80,15 +80,15 @@ export default function PaginationScreen() {
   );
 
   return (
-    <View className="flex-1 bg-gray-50 p-4">
+    <View className="flex-1 bg-codemotion-navy p-4">
       <View className="mb-4 flex-row items-center justify-between">
-        <Text className="text-2xl font-bold text-codemotion-darkBlue">Page {page}</Text>
+        <Text className="text-2xl font-bold text-codemotion-white">Page {page}</Text>
         {(isFetching || isRefetching) && <PulsingDot />}
       </View>
 
       {isError && (
-        <View className="mb-4 rounded-lg bg-red-50 p-3">
-          <Text className="text-red-600">
+        <View className="mb-4 rounded-lg bg-red-900/30 p-3">
+          <Text className="text-red-400">
             Error: {error instanceof Error ? error.message : 'Failed to load data'}
           </Text>
         </View>
