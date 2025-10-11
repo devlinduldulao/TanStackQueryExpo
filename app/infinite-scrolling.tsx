@@ -4,6 +4,7 @@ import {
   View,
   ActivityIndicator,
   Dimensions,
+  FlatList,
   TouchableOpacity,
   ViewabilityConfig,
   ViewToken,
@@ -12,11 +13,10 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import commodityService from '@/services/commodity';
 import { Commodity } from '@/models';
 import { useIsFocused } from '@react-navigation/native';
-import { LegendList, LegendListRef } from '@legendapp/list';
 
 export default function InfiniteScrollingScreen() {
   const ITEMS_PER_PAGE = 7;
-  const legendListRef = useRef<LegendListRef>(null);
+  const flatListRef = useRef<FlatList>(null);
 
   // To track the last visible item before pagination
   const [lastVisibleItemId, setLastVisibleItemId] = useState<string | null>(null);
@@ -40,7 +40,7 @@ export default function InfiniteScrollingScreen() {
     error,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["commodities"],
+    queryKey: ['commodities'],
     queryFn: async ({ pageParam }) => {
       return await commodityService.getCommodities(pageParam, ITEMS_PER_PAGE);
     },
@@ -95,7 +95,7 @@ export default function InfiniteScrollingScreen() {
       !isFetchingNextPage &&
       !isFetchingPreviousPage &&
       lastVisibleItemId &&
-      legendListRef.current
+      flatListRef.current
     ) {
       // Find the index of the remembered item
       const itemIndex = allItems.findIndex((item) => item.id === lastVisibleItemId);
@@ -103,7 +103,7 @@ export default function InfiniteScrollingScreen() {
       if (itemIndex !== -1) {
         // Small delay to ensure rendering is complete
         setTimeout(() => {
-          legendListRef.current?.scrollToIndex({
+          flatListRef.current?.scrollToIndex({
             index: itemIndex,
             animated: false,
             viewPosition: 0.5, // Position in middle of viewport
@@ -131,6 +131,24 @@ export default function InfiniteScrollingScreen() {
   const viewabilityConfig = useRef<ViewabilityConfig>({
     itemVisiblePercentThreshold: 50,
   });
+
+  // Handle scroll failure gracefully
+  const handleScrollToIndexFailed = useCallback(
+    (info: { index: number; highestMeasuredFrameIndex: number }) => {
+      console.log('Scroll to index failed:', info);
+      // Try again with a delay and adjusted index
+      setTimeout(() => {
+        if (flatListRef.current && allItems.length > 0) {
+          const fallbackIndex = Math.min(info.index, allItems.length - 1);
+          flatListRef.current.scrollToIndex({
+            index: Math.max(0, fallbackIndex),
+            animated: false,
+          });
+        }
+      }, 100);
+    },
+    [allItems]
+  );
 
   // Item renderer
   const renderItem = ({ item }: { item: Commodity }) => (
@@ -231,8 +249,8 @@ export default function InfiniteScrollingScreen() {
 
   return (
     <View className="flex-1 bg-gray-50">
-      <LegendList
-        ref={legendListRef}
+      <FlatList
+        ref={flatListRef}
         data={allItems}
         renderItem={renderItem}
         keyExtractor={(item) => String(item.id)}
@@ -246,7 +264,12 @@ export default function InfiniteScrollingScreen() {
         ListFooterComponent={renderFooter}
         contentContainerStyle={{ paddingVertical: 10 }}
         showsVerticalScrollIndicator={true}
-        maintainVisibleContentPosition
+        scrollEventThrottle={16}
+        onScrollToIndexFailed={handleScrollToIndexFailed}
+        initialNumToRender={3}
+        maxToRenderPerBatch={3}
+        windowSize={3}
+        removeClippedSubviews={false}
       />
     </View>
   );
