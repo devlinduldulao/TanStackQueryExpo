@@ -53,26 +53,26 @@ export default function PaginationScreen() {
   const renderPagination = () => (
     <View className="mb-6 mt-4 flex-row items-center justify-between">
       <TouchableOpacity
-        className={`flex-row items-center rounded-lg ${page === 1 ? 'bg-gray-200' : 'bg-indigo-600'} px-4 py-2`}
+        className={`flex-row items-center rounded-lg px-4 py-2 ${page === 1 || isFetching ? 'bg-codemotion-navy/30 opacity-50' : 'bg-codemotion-orange'}`}
         onPress={() => handleSetPage(page - 1)}
         disabled={page === 1 || isFetching}>
-        <Octicons name="chevron-left" size={16} color={page === 1 ? '#9ca3af' : '#ffffff'} />
-        <Text className={`ml-1 ${page === 1 ? 'text-gray-500' : 'text-white'}`}>Previous</Text>
+        <Octicons name="chevron-left" size={16} color="#ffffff" />
+        <Text className="ml-1 text-white">Previous</Text>
       </TouchableOpacity>
 
       <View className="items-center">
-        <Text className="text-base font-medium text-gray-700">
+        <Text className="text-base font-medium text-codemotion-white">
           Page {page} {data?.next ? 'of many' : ''}
         </Text>
-        <Text className="text-sm text-gray-500">Showing {data?.data.length || 0} items</Text>
+        <Text className="text-sm text-codemotion-blue">Showing {data?.data.length || 0} items</Text>
       </View>
 
       <TouchableOpacity
-        className={`flex-row items-center rounded-lg ${!data?.next ? 'bg-gray-200' : 'bg-indigo-600'} px-4 py-2`}
+        className={`flex-row items-center rounded-lg px-4 py-2 ${!data?.next || isFetching ? 'bg-codemotion-navy/30 opacity-50' : 'bg-codemotion-orange'}`}
         onPress={() => handleSetPage(page + 1)}
         disabled={!data?.next || isFetching}>
-        <Text className={`mr-1 ${!data?.next ? 'text-gray-500' : 'text-white'}`}>Next</Text>
-        <Octicons name="chevron-right" size={16} color={!data?.next ? '#9ca3af' : '#ffffff'} />
+        <Text className="mr-1 text-white">Next</Text>
+        <Octicons name="chevron-right" size={16} color="#ffffff" />
       </TouchableOpacity>
     </View>
   );
