@@ -1,12 +1,4 @@
-import {
-  Text,
-  View,
-  Image,
-  ScrollView,
-  StatusBar,
-  useWindowDimensions,
-  TouchableOpacity,
-} from 'react-native';
+import { Text, View, Image, ScrollView, useWindowDimensions, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -25,7 +17,6 @@ import Animated, {
   withTiming,
   Easing,
   useDerivedValue,
-  runOnJS,
 } from 'react-native-reanimated';
 
 export default function HomeScreen() {
@@ -140,7 +131,6 @@ export default function HomeScreen() {
 
   return (
     <>
-      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <LinearGradient
         colors={['#0e1e30', '#162f4b', '#044389']}
         style={{

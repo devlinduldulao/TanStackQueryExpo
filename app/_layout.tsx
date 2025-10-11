@@ -184,7 +184,7 @@ export default function RootLayout() {
             />
           </Drawer>
         </GestureHandlerRootView>
-        <StatusBar style="auto" />
+        <StatusBar style="light" />
       </ThemeProvider>
       <ReactQueryDevTools />
     </QueryClientProvider>
