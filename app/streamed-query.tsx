@@ -83,6 +83,7 @@ export default function StreamedQueryScreen() {
           setServerStatus(isHealthy ? 'online' : 'offline');
         }
       } catch (error) {
+        console.error('Error checking server health:', error);
         if (!abortController.signal.aborted) {
           setServerStatus('offline');
         }
@@ -192,6 +193,7 @@ export default function StreamedQueryScreen() {
                         }
                       } catch (e) {
                         // Ignore parsing errors for incomplete lines
+                        console.warn('⚠️ JSON parse error:', e);
                       }
                     }
                   }

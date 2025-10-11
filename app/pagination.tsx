@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { LegendList, LegendListRef, LegendListRenderItemProps } from '@legendapp/list';
+import { LegendList } from '@legendapp/list';
 
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -12,7 +12,7 @@ export default function PaginationScreen() {
   const [page, setPage] = useState(1);
   const pageSize = 10;
 
-  const { data, isRefetching, isFetching, isError, error, isPending } = useQuery({
+  const { data, isRefetching, isFetching, isError, error } = useQuery({
     queryKey: ['commodities', page, pageSize],
     queryFn: () => commodityService.getCommodities(page, pageSize),
     placeholderData: keepPreviousData,
