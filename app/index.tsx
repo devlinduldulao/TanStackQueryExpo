@@ -212,7 +212,7 @@ export default function HomeScreen() {
         ]}
       />
 
-      <SafeAreaProvider className="flex-1" edges={['top', 'bottom']}>
+      <SafeAreaProvider className="flex-1">
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           className="flex-1"
