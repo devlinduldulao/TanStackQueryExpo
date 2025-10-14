@@ -1,7 +1,19 @@
 /**
- * TanStack Query streamedQuery demo - Real-time streaming with AsyncIterable for React Native
- * Uses experimental_streamedQuery with queryFn (newer API) instead of streamFn
- * Perfect for conference demos showing streaming data patterns
+ * TanStack Query streamedQuery Demo - Real-time Streaming with AsyncIterable
+ *
+ * Demonstrates the official experimental_streamedQuery API for React Native.
+ *
+ * Official API Usage:
+ * - streamFn: async generator function that yields data chunks
+ * - refetchMode: 'reset' | 'append' | 'replace' (configurable via UI)
+ * - automatic reducer & initialValue for array types
+ *
+ * Key Features:
+ * - Real-time streaming using AsyncIterable generators
+ * - XMLHttpRequest for React Native streaming compatibility
+ * - Interactive refetch mode switching (reset/append/replace)
+ * - Server health monitoring and connection status
+ * - Clean chat UI with typing indicators
  */
 
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
@@ -99,24 +111,23 @@ export default function StreamedQueryScreen() {
     };
   }, []);
   /**
-   * TanStack Query options using experimental streamedQuery
+   * TanStack Query options using experimental streamedQuery (Official API)
    *
-   * Note: The current implementation uses `queryFn` parameter within streamedQuery.
-   * This may be an older or custom version of the API. The official docs mention `streamFn`,
-   * but this working implementation demonstrates the core streaming concepts.
+   * This implementation follows the official streamedQuery API from TanStack Query.
+   * The streamedQuery helper is wrapped in queryFn as part of queryOptions pattern.
    *
    * Key Streaming Concepts Demonstrated:
    * - AsyncIterable generator functions for progressive data loading
-   * - XMLHttpRequest for React Native streaming compatibility
-   * - Real-time chunk processing and yielding
-   * - Proper error handling and cancellation support
+   * - XMLHttpRequest for React Native streaming compatibility (fetch doesn't support streaming)
+   * - Real-time chunk processing and yielding for immediate UI updates
+   * - Proper error handling and cancellation support via AbortSignal
    * - Multiple refetch modes for different streaming behaviors
    *
-   * Official streamedQuery API Options (per docs):
-   * - streamFn: (context) => Promise<AsyncIterable<TData>> - Main streaming function
-   * - refetchMode: 'append' | 'reset' | 'replace' - How refetches are handled
-   * - reducer: (accumulator, chunk) => TData - Custom chunk processing
-   * - initialValue: TData - Initial data while first chunk loads
+   * Official streamedQuery API Options (all implemented here):
+   * - streamFn: (context) => Promise<AsyncIterable<TData>> - Main streaming function (REQUIRED)
+   * - refetchMode: 'append' | 'reset' | 'replace' - How refetches are handled (default: 'reset')
+   * - reducer: (accumulator, chunk) => TData - Custom chunk processing (auto for arrays)
+   * - initialValue: TData - Initial data while first chunk loads (auto: empty array)
    *
    * @type {QueryOptions} chatQueryOptions - Configuration for the streaming query
    */
@@ -124,24 +135,31 @@ export default function StreamedQueryScreen() {
     queryKey: ['chat-stream', currentPrompt],
     queryFn: streamedQuery({
       /**
-       * Main streaming generator function
+       * streamFn: Main streaming generator function (REQUIRED)
        *
-       * This async generator implements the AsyncIterable pattern for progressive
-       * data yielding. Each `yield` statement sends a new chunk to the query cache,
-       * allowing the UI to update in real-time as data streams in.
+       * Returns a Promise of an AsyncIterable that yields data chunks progressively.
+       * This async generator implements the AsyncIterable pattern required by streamedQuery.
+       * Each `yield` statement sends a new chunk to the query cache, allowing real-time UI updates.
        *
-       * Key Implementation Details:
-       * - Uses XMLHttpRequest for React Native streaming compatibility
-       * - Implements polling pattern to yield chunks as they arrive
-       * - Handles network errors and query cancellation gracefully
-       * - Optimized delays to prevent busy waiting
+       * Implementation Strategy:
+       * - Uses XMLHttpRequest for React Native compatibility (fetch lacks streaming support)
+       * - Implements polling pattern to yield chunks as they arrive from the server
+       * - Handles network errors and query cancellation (via context.signal) gracefully
+       * - Optimized delays (50ms) to prevent busy waiting while maintaining responsiveness
+       *
+       * Data Flow:
+       * 1. XHR sends request and receives chunks via onreadystatechange
+       * 2. Chunks accumulate in accumulatedChunks array
+       * 3. Generator polls for new chunks and yields them individually
+       * 4. Query state updates from 'pending' → 'success' after first chunk
+       * 5. fetchStatus stays 'fetching' until stream completes
        *
        * @async
        * @generator
-       * @function queryFn
-       * @param {QueryFunctionContext} context - TanStack Query context with signal
+       * @function streamFn
+       * @param {QueryFunctionContext} context - TanStack Query context with signal for cancellation
        * @yields {string} - Individual text chunks as they arrive from server
-       * @throws {Error} - Network errors or cancellation errors
+       * @throws {Error} - Network errors or cancellation errors (AbortError)
        */
       streamFn: async function* (context) {
         console.log('🚀 Starting streaming for:', currentPrompt);
@@ -260,19 +278,25 @@ export default function StreamedQueryScreen() {
         }
       },
       /**
-       * Refetch mode configuration (per official API)
-       * - 'reset': Clears data and goes to pending on refetch (default)
-       * - 'append': Appends new data to existing data
-       * - 'replace': Replaces all data when stream ends
+       * refetchMode: Controls how refetches behave (OPTIONAL, default: 'reset')
+       * - 'reset': Clears all data and query goes back to 'pending' state on refetch
+       * - 'append': New streamed data is appended to existing data array
+       * - 'replace': All data is written to cache only when stream ends (not progressive)
        */
       refetchMode: refetchMode,
 
       /**
-       * Default behavior:
-       * - reducer: Appends each chunk to array (automatic for string[] type)
-       * - initialValue: Empty array (automatic for array types)
+       * reducer & initialValue: Automatic for array types (OPTIONAL)
        *
-       * Custom options could be:
+       * Since TData is string[] (array type), streamedQuery automatically:
+       * - reducer: Appends each chunk to the end of the accumulator
+       * - initialValue: Uses empty array [] as initial value
+       *
+       * For custom types (non-array), you must provide:
+       * reducer: (accumulator: TData, chunk: TQueryFnData) => TData,
+       * initialValue: TData
+       *
+       * Example for custom reducer:
        * reducer: (accumulator: string[], chunk: string) => [...accumulator, chunk],
        * initialValue: [] as string[]
        */
