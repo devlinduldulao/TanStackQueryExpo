@@ -13,7 +13,7 @@ export default function MoviesScreen() {
   const firstTimeRef = useRef(true);
 
   const moviesQuery = useQuery<Movie[], Error>({
-    queryKey: ["movies"],
+    queryKey: ['movies'],
     queryFn: () => movieService.getMovies(),
   });
 
@@ -29,24 +29,21 @@ export default function MoviesScreen() {
   );
 
   const deleteMovieMutation = useMutation({
-    mutationKey: ["movies", 'delete'],
+    mutationKey: ['movies', 'delete'],
     mutationFn: (id: string) => movieService.deleteMovie(id),
     // Implement optimistic updates
     onMutate: async (id: string) => {
       // Cancel any outgoing refetches
-      await queryClient.cancelQueries({ queryKey: ["movies"] });
+      await queryClient.cancelQueries({ queryKey: ['movies'] });
 
       // Snapshot the previous value
-      const previousMovies = queryClient.getQueryData<Movie[]>(["movies"]);
+      const previousMovies = queryClient.getQueryData<Movie[]>(['movies']);
 
       // Optimistically update by removing the movie from the list
-      queryClient.setQueryData<Movie[]>(
-        ["movies"],
-        (old) => old?.filter((m) => m.id !== id) ?? []
-      );
+      queryClient.setQueryData<Movie[]>(['movies'], (old) => old?.filter((m) => m.id !== id) ?? []);
 
       // Remove the individual movie query if it exists
-      queryClient.removeQueries({ queryKey: ["movie", id] });
+      queryClient.removeQueries({ queryKey: ['movie', id] });
 
       return { previousMovies };
     },
@@ -56,12 +53,12 @@ export default function MoviesScreen() {
 
       // Rollback the cache on error
       if (context?.previousMovies) {
-        queryClient.setQueryData<Movie[]>(["movies"], context.previousMovies);
+        queryClient.setQueryData<Movie[]>(['movies'], context.previousMovies);
       }
     },
     onSettled: () => {
       // Invalidate queries after mutation is settled
-      queryClient.invalidateQueries({ queryKey: ["movies"] });
+      queryClient.invalidateQueries({ queryKey: ['movies'] });
     },
   });
 
@@ -98,7 +95,7 @@ export default function MoviesScreen() {
       <View className="mt-2 flex-1">
         <Text
           className={
-            queryClient.getQueryData(["movie", movie.id])
+            queryClient.getQueryData(['movie', movie.id])
               ? 'font-bold text-indigo-500'
               : 'font-bold'
           }>

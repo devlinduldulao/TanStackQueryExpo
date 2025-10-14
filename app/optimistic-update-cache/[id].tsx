@@ -8,7 +8,7 @@ export default function MovieScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const movieQuery = useQuery<Movie, Error>({
-    queryKey: ["movie", id],
+    queryKey: ['movie', id],
     queryFn: () => movieService.getMovieById(id),
     enabled: Number(id) > 0, // Only fetch if ID is valid
   });
