@@ -7,7 +7,7 @@ import { LegendList } from '@legendapp/list';
 
 export default function ReportsScreen() {
   const reportsQuery = useQuery({
-    queryKey: ["reports"],
+    queryKey: ['reports'],
     queryFn: () => reportService.getReports(),
     staleTime: Infinity, // Reports won't be considered stale
     gcTime: Infinity, // Reports won't be garbage collected
@@ -20,7 +20,7 @@ export default function ReportsScreen() {
   you can use prefetching to populate the cache ahead of time,
   leading to a faster experience for the user. */
     await queryClient.prefetchQuery({
-      queryKey: ["report", reportId],
+      queryKey: ['report', reportId],
       queryFn: () => reportService.getReportById(reportId),
       staleTime: Infinity,
       gcTime: Infinity,
