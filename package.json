@@ -4,17 +4,13 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start --reset-cache --localhost",
-    "dev": "concurrently \"npm run backend\" \"npm run start\"",
-    "dev:ios": "concurrently \"expo start --ios\" \"npm run backend\"",
-    "dev:android": "concurrently \"expo start --android\" \"npm run backend\"",
-    "dev:web": "concurrently \"expo start --web\" \"npm run backend\"",
-    "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
     "ios": "expo start --ios",
+    "android": "expo start --android",
     "web": "expo start --web",
     "lint": "expo lint",
     "backend": "json-server --delay=2000 --port=8080 json-server/db.json",
-    "streaming-backend": "cd server && node streaming-server.js"
+    "streaming-backend": "cd server && node streaming-server.js",
+    "reset-project": "node ./scripts/reset-project.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
