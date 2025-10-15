@@ -8,8 +8,8 @@
     "android": "expo start --android",
     "web": "expo start --web",
     "lint": "expo lint",
-    "backend": "json-server --delay=2000 --port=8080 json-server/db.json",
-    "streaming-backend": "cd server && node streaming-server.js",
+    "api": "json-server --delay=2000 --port=8080 json-server/db.json",
+    "llm": "cd server && node streaming-server.js",
     "reset-project": "node ./scripts/reset-project.js"
   },
   "dependencies": {
