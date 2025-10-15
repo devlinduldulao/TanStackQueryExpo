@@ -6,6 +6,7 @@ import { Report } from '@/models';
 import { LegendList } from '@legendapp/list';
 
 export default function ReportsScreen() {
+  // injectQuery in Angular, createQuery in Svelte
   const reportsQuery = useQuery({
     queryKey: ['reports'],
     queryFn: () => reportService.getReports(),
