@@ -9,12 +9,8 @@ export function useTodoMutation() {
     mutationKey: ['todos', 'add'],
     mutationFn: (variables: string) => todoService.postTodo(variables),
     onSuccess: (data, variables, onMutateResult, context) => {
-      // commented out because we are using polling to refetch the data for demo purposes
-      // queryClient.setQueryData<Todo[]>([names.todos], (cache: any) => {
-      //   return cache ? [...cache, data] : [data];
-      // });
-      // or we could invalidate the query to refetch
-      // queryClient.invalidateQueries({ queryKey: ['todos'] });
+      // Invalidate and refetch, but not needed because we already have a polling query in the main todo list screen
+      queryClient.invalidateQueries({ queryKey: ['todos'] });
     },
     onError: (error) => {
       console.error('Failed to add todo:', error);
