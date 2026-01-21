@@ -35,7 +35,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 // Server configuration
-const SERVER_URL = 'http://localhost:3001'; // Change to your IP if testing on device
+const SERVER_URL = Platform.OS == 'android' ? 'http://10.0.2.2:3001' : 'http://localhost:3001';
 
 // Check if streaming server is running
 async function checkServerHealth() {

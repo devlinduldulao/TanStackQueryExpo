@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Platform } from 'react-native';
 
 // Determine base URL based on platform
-const baseURL = Platform.OS === 'android' ? 'http://10.0.2.2:8080/' : 'http://localhost:8080/';
+const baseURL = Platform.OS === 'android' ? 'http://10.0.2.2:8080' : 'http://localhost:8080';
 
 // Create axios instance with configuration
 export const api = axios.create({
