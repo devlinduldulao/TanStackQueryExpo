@@ -73,7 +73,7 @@ export default function MovieScreen() {
       <View className="mt-4 flex items-center justify-center">
         {movieQuery.isFetching && (
           <View className="flex-row items-center">
-            <ActivityIndicator size="small" color="#f97316" />
+            <ActivityIndicator size="small" color="#4630EB" />
             <Text className="ml-2">Fetching in the background</Text>
           </View>
         )}

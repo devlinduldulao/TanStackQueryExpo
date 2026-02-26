@@ -35,12 +35,12 @@
   --bricks-color-4efe0d: #8bc34a;
   --bricks-color-1a5ae8: #cddc39;
   
-  /* Brand Colors */
-  --bricks-color-dsqzwd: #0e1e30; /* Navy */
-  --bricks-color-awxtcl: #ff5c00; /* Orange */
+  /* Expo Brand Colors */
+  --bricks-color-dsqzwd: #000020; /* Navy */
+  --bricks-color-awxtcl: #4630EB; /* Orange -> Expo Blue */
   --bricks-color-hbxsgm: #ffffff; /* White */
-  --bricks-color-dgkrbu: #0555fa; /* Blue */
-  --bricks-color-kocnxq: #044389; /* Dark Blue */
-  --bricks-color-tareec: #f9dc5c; /* Yellow */
-  --bricks-color-lclnrk: #162f4b; /* Deep Navy */
+  --bricks-color-dgkrbu: #4630EB; /* Blue */
+  --bricks-color-kocnxq: #2A1B8C; /* Dark Blue */
+  --bricks-color-tareec: #FFC107; /* Yellow */
+  --bricks-color-lclnrk: #111111; /* Deep Navy */
 }

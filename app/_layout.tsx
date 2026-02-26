@@ -33,13 +33,13 @@ const queryClient = new QueryClient({
   },
 });
 
-const codemotionColors = {
-  navy: '#0e1e30',
-  orange: '#ff5c00',
-  blue: '#0555fa',
-  darkBlue: '#044389',
-  deepNavy: '#162f4b',
-  yellow: '#f9dc5c',
+const expoColors = {
+  navy: '#000020',
+  orange: '#4630EB',
+  blue: '#4630EB',
+  darkBlue: '#2A1B8C',
+  deepNavy: '#111111',
+  yellow: '#FFC107',
   white: '#ffffff',
   gray50: '#e0e0e0',
   gray100: '#9e9e9e',
@@ -87,18 +87,18 @@ export default function RootLayout() {
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Drawer
             screenOptions={{
-              headerTintColor: codemotionColors.white,
+              headerTintColor: expoColors.white,
               headerStyle: {
-                backgroundColor: codemotionColors.navy,
+                backgroundColor: expoColors.navy,
                 borderBottomWidth: 1,
-                borderBottomColor: codemotionColors.darkBlue,
+                borderBottomColor: expoColors.darkBlue,
               },
-              drawerActiveTintColor: codemotionColors.orange,
-              drawerInactiveTintColor: codemotionColors.gray50,
-              drawerActiveBackgroundColor: codemotionColors.darkBlue,
+              drawerActiveTintColor: expoColors.orange,
+              drawerInactiveTintColor: expoColors.gray50,
+              drawerActiveBackgroundColor: expoColors.darkBlue,
               drawerStyle: {
-                backgroundColor: codemotionColors.deepNavy,
-                borderRightColor: codemotionColors.blue,
+                backgroundColor: expoColors.deepNavy,
+                borderRightColor: expoColors.blue,
                 borderRightWidth: 2,
               },
               // Dark overlay to match the theme

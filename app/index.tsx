@@ -167,7 +167,7 @@ export default function HomeScreen() {
   return (
     <>
       <LinearGradient
-        colors={['#0e1e30', '#162f4b', '#044389', '#0e1e30']}
+        colors={['#000020', '#111111', '#2A1B8C', '#000020']}
         style={{
           position: 'absolute',
           left: 0,
@@ -190,7 +190,7 @@ export default function HomeScreen() {
             width: 300,
             height: 300,
             borderRadius: 150,
-            backgroundColor: '#ff5c00',
+            backgroundColor: '#4630EB',
             opacity: 0.05,
           },
           glowAnimatedStyle,
@@ -205,7 +205,7 @@ export default function HomeScreen() {
             width: 400,
             height: 400,
             borderRadius: 200,
-            backgroundColor: '#0555fa',
+            backgroundColor: '#2A1B8C',
             opacity: 0.05,
           },
           glowAnimatedStyle,
@@ -222,31 +222,31 @@ export default function HomeScreen() {
             <Animated.View
               entering={FadeInUp.delay(200).springify()}
               className="absolute right-12 top-24">
-              <View className="h-3 w-3 rounded-full bg-codemotion-orange opacity-60" />
+              <View className="h-3 w-3 rounded-full bg-expo-orange opacity-60" />
             </Animated.View>
 
             <Animated.View
               entering={FadeInUp.delay(300).springify()}
               className="absolute right-24 top-40">
-              <View className="h-2 w-2 rounded-full bg-codemotion-yellow opacity-40" />
+              <View className="h-2 w-2 rounded-full bg-expo-yellow opacity-40" />
             </Animated.View>
 
             <Animated.View
               entering={FadeInUp.delay(250).springify()}
               className="absolute left-16 top-28">
-              <View className="h-2 w-2 rounded-full bg-codemotion-blue opacity-50" />
+              <View className="h-2 w-2 rounded-full bg-expo-blue opacity-50" />
             </Animated.View>
 
             <Animated.View
               entering={FadeInUp.delay(350).springify()}
               className="absolute bottom-40 left-8">
-              <View className="h-3 w-3 rounded-full bg-codemotion-orange opacity-30" />
+              <View className="h-3 w-3 rounded-full bg-expo-orange opacity-30" />
             </Animated.View>
 
             <Animated.View
               entering={FadeInUp.delay(400).springify()}
               className="absolute bottom-32 right-16">
-              <View className="h-2 w-2 rounded-full bg-codemotion-blue opacity-40" />
+              <View className="h-2 w-2 rounded-full bg-expo-blue opacity-40" />
             </Animated.View>
 
             {/* Main glassmorphic card */}
@@ -256,25 +256,25 @@ export default function HomeScreen() {
                   floatingElementStyle,
                   borderGlowStyle,
                   {
-                    shadowColor: '#ff5c00',
+                    shadowColor: '#4630EB',
                     shadowOffset: { width: 0, height: 8 },
                   },
                 ]}
-                className="overflow-hidden rounded-3xl border border-codemotion-orange/30 bg-codemotion-deepNavy/40 p-8 backdrop-blur-xl">
+                className="overflow-hidden rounded-3xl border border-expo-orange/30 bg-expo-deepNavy/40 p-8 backdrop-blur-xl">
                 {/* Gradient overlay for glassmorphism */}
-                <View className="absolute inset-0 bg-gradient-to-b from-codemotion-white/5 to-transparent" />
+                <View className="absolute inset-0 bg-gradient-to-b from-expo-white/5 to-transparent" />
 
                 {/* Glow effect behind card */}
                 <Animated.View
                   style={glowAnimatedStyle}
-                  className="absolute -inset-4 rounded-3xl bg-codemotion-orange/20 blur-3xl"
+                  className="absolute -inset-4 rounded-3xl bg-expo-orange/20 blur-3xl"
                 />
 
                 <View className="relative z-10">
                   {/* Logo with scale animation */}
                   <View className="mb-8 items-center">
                     <Animated.View style={logoAnimatedStyle}>
-                      <View className="rounded-full bg-codemotion-orange/10 p-4">
+                      <View className="rounded-full bg-expo-orange/10 p-4">
                         <Image
                           source={require('../assets/images/react-logo.png')}
                           className="h-16 w-16"
@@ -286,28 +286,28 @@ export default function HomeScreen() {
 
                   {/* Main title - Conference style */}
                   <View className="mb-8 items-center">
-                    <Text className="mb-2 text-5xl font-bold uppercase tracking-wider text-codemotion-white">
-                      Codemotion
+                    <Text className="mb-2 text-5xl font-bold uppercase tracking-wider text-expo-white">
+                      Expo
                     </Text>
-                    <View className="h-1 w-24 bg-codemotion-orange" />
-                    <Text className="mt-4 text-center text-sm uppercase tracking-widest text-codemotion-gray-50">
-                      Milan 2025
+                    <View className="h-1 w-24 bg-expo-orange" />
+                    <Text className="mt-4 text-center text-sm uppercase tracking-widest text-expo-gray-50">
+                      Conference
                     </Text>
                   </View>
 
                   {/* Description */}
                   <View className="mb-6">
-                    <Text className="text-center text-base leading-relaxed text-codemotion-white/90">
+                    <Text className="text-center text-base leading-relaxed text-expo-white/90">
                       TanStack Query in React Native
                     </Text>
-                    <Text className="mt-1 text-center text-sm text-codemotion-blue">
+                    <Text className="mt-1 text-center text-sm text-expo-blue">
                       Advanced State Management Demo
                     </Text>
                   </View>
 
                   {/* Divider with glow */}
                   <View className="my-6 flex-row items-center">
-                    <View className="h-px flex-1 bg-gradient-to-r from-transparent via-codemotion-orange to-transparent" />
+                    <View className="h-px flex-1 bg-gradient-to-r from-transparent via-expo-orange to-transparent" />
                   </View>
 
                   {/* Speaker info - Simple and clean */}
@@ -315,7 +315,7 @@ export default function HomeScreen() {
                     <Animated.View
                       entering={FadeInDown.delay(500).springify()}
                       className="flex-row items-center">
-                      <Text className="ml-3 text-xl text-codemotion-orange">
+                      <Text className="ml-3 text-xl text-expo-orange">
                         By: @DevlinDuldulao
                       </Text>
                     </Animated.View>
@@ -323,7 +323,7 @@ export default function HomeScreen() {
                     <Animated.View
                       entering={FadeInDown.delay(600).springify()}
                       className="flex-row items-center">
-                      <Text className="ml-3 text-lg text-codemotion-white">Crayon Consulting</Text>
+                      <Text className="ml-3 text-lg text-expo-white">Crayon Consulting</Text>
                     </Animated.View>
                   </View>
 
@@ -331,11 +331,11 @@ export default function HomeScreen() {
                   <View className="mt-8 items-center">
                     <Animated.View className="relative">
                       <Animated.View
-                        className="absolute -inset-2 rounded-full bg-codemotion-yellow/60 blur-md"
+                        className="absolute -inset-2 rounded-full bg-expo-yellow/60 blur-md"
                         style={pulseAnimatedStyle}
                       />
-                      <View className="relative h-16 w-16 items-center justify-center rounded-full bg-codemotion-orange">
-                        <Text className="text-xl font-bold text-codemotion-white">2025</Text>
+                      <View className="relative h-16 w-16 items-center justify-center rounded-full bg-expo-orange">
+                        <Text className="text-xl font-bold text-expo-white">2026</Text>
                       </View>
                     </Animated.View>
                   </View>
@@ -345,7 +345,7 @@ export default function HomeScreen() {
 
             {/* Orbiting tech icons */}
             <Animated.View style={orbitAnimatedStyle} className="absolute z-10">
-              <View className="h-12 w-12 items-center justify-center rounded-full bg-codemotion-blue shadow-lg">
+              <View className="h-12 w-12 items-center justify-center rounded-full bg-expo-blue shadow-lg">
                 <Ionicons name="rocket" size={24} color="white" />
               </View>
             </Animated.View>
@@ -355,10 +355,10 @@ export default function HomeScreen() {
               <Animated.View style={floatingElementStyle}>
                 <TouchableOpacity
                   onPress={() => navigation.openDrawer()}
-                  className="flex-row items-center space-x-2 rounded-full border border-codemotion-yellow/30 bg-codemotion-navy/60 px-6 py-3 backdrop-blur-md">
-                  <Ionicons name="menu" size={20} color="#f9dc5c" />
-                  <Text className="font-semibold text-codemotion-yellow">Explore Demos</Text>
-                  <Ionicons name="arrow-forward" size={20} color="#f9dc5c" />
+                  className="flex-row items-center space-x-2 rounded-full border border-expo-yellow/30 bg-expo-navy/60 px-6 py-3 backdrop-blur-md">
+                  <Ionicons name="menu" size={20} color="#FFC107" />
+                  <Text className="font-semibold text-expo-yellow">Explore Demos</Text>
+                  <Ionicons name="arrow-forward" size={20} color="#FFC107" />
                 </TouchableOpacity>
               </Animated.View>
             </Animated.View>

@@ -20,9 +20,9 @@ export default function DedupingScreen() {
   return (
     <View className="flex-1">
       <View className="flex-row items-center p-4">
-        <Text className="text-xl font-bold text-codemotion-darkBlue">HTTP Requests in Screen</Text>
+        <Text className="text-xl font-bold text-expo-white">HTTP Requests in Screen</Text>
         {myQuery.status === 'pending' && <PulsingDot />}
-        {myQuery.isSuccess && <Text className="ml-4 text-3xl">🇮🇹</Text>}
+        {myQuery.isSuccess && <Text className="ml-4 text-3xl">💵</Text>}
       </View>
       <SampleA />
       <SampleB />

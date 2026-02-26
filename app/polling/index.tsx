@@ -31,7 +31,7 @@ export default function PollingScreen() {
   };
 
   return (
-    <View className="flex-1 bg-gray-50 p-4">
+    <View className="flex-1 bg-expo-navy p-4">
       <Stack.Screen
         options={{
           title: 'List of To Dos',
@@ -47,12 +47,12 @@ export default function PollingScreen() {
           value={inputValue}
           onChangeText={handleIntervalChange}
           keyboardType="numeric"
-          className={`border ${isValidInput ? 'bg-white' : 'bg-red-200'} w-20 rounded border-gray-300 px-2 py-1 text-black`}
+          className={`border ${isValidInput ? 'bg-expo-deepNavy' : 'bg-red-200'} w-20 rounded border-gray-300 px-2 py-1 text-expo-white`}
         />
       </View>
 
       {!isValidInput && (
-        <Text className="mb-2 text-xs text-red-500">Enter a value between 1000-10000 ms</Text>
+        <Text className="mb-2 text-xs text-red-400">Enter a value between 1000-10000 ms</Text>
       )}
 
       <View

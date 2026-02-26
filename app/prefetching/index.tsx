@@ -4,6 +4,12 @@ import { Link, Stack } from 'expo-router';
 import reportService from '@/services/report';
 import { Report } from '@/models';
 import { LegendList } from '@legendapp/list';
+import { cssInterop } from 'nativewind';
+
+cssInterop(LegendList, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+});
 
 export default function ReportsScreen() {
   // injectQuery in Angular, createQuery in Svelte
@@ -53,7 +59,7 @@ export default function ReportsScreen() {
       {reportsQuery.isPending && <Text>Loading reports...</Text>}
 
       {reportsQuery.isError && (
-        <Text className="text-red-500">Error loading reports: {reportsQuery.error?.message}</Text>
+        <Text className="text-red-400">Error loading reports: {reportsQuery.error?.message}</Text>
       )}
 
       {reportsQuery.data && (
@@ -61,6 +67,7 @@ export default function ReportsScreen() {
           data={reportsQuery.data}
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderReportItem}
+          // @ts-expect-error - className is added by cssInterop
           className="w-full"
         />
       )}

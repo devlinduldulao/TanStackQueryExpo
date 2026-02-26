@@ -14,27 +14,27 @@ module.exports = {
         spin: 'spin 1s linear infinite',
       },
       colors: {
-        // Conference Colors
-        codemotion: {
+        // Expo Brand Colors
+        expo: {
           // Primary colors
-          navy: '#0e1e30', // Main dark blue background
-          orange: '#ff5c00', // Primary orange/CTA color
-          blue: '#0555fa', // Bright blue accent
-          darkBlue: '#044389', // Secondary dark blue
-          deepNavy: '#162f4b', // Deep navy for sections
-          yellow: '#f9dc5c', // Accent yellow
+          navy: '#000020', // Expo dark background
+          orange: '#4630EB', // Expo primary blue (replacing orange as primary CTA)
+          blue: '#4630EB', // Expo primary blue
+          darkBlue: '#2A1B8C', // Expo darker blue
+          deepNavy: '#111111', // Expo deep gray/black for sections
+          yellow: '#FFC107', // Accent yellow
           white: '#ffffff', // White
-          red: '#f44336',
+          red: '#E53935',
           purple: '#9c27b0',
           lime: '#cddc39',
 
           // Grays
           gray: {
-            50: '#e0e0e0',
-            100: '#9e9e9e',
-            200: '#616161',
-            300: '#424242',
-            400: '#212121',
+            50: '#f3f3f8',
+            100: '#e1e1e8',
+            200: '#c4c4d4',
+            300: '#a5a5ba',
+            400: '#8a8a9e',
           },
         },
 

@@ -28,7 +28,7 @@ export default function ReportScreen() {
       )}
 
       {reportQuery.isError && (
-        <Text className="text-red-500">Error: {reportQuery.error?.message}</Text>
+        <Text className="text-red-400">Error: {reportQuery.error?.message}</Text>
       )}
 
       {reportQuery.data && (
@@ -44,7 +44,7 @@ export default function ReportScreen() {
       <View className="mt-4 items-center justify-center">
         {reportQuery.isFetching && !reportQuery.isPending && (
           <View className="flex-row items-center">
-            <ActivityIndicator size="small" color="#0000ff" />
+            <ActivityIndicator size="small" color="#4630EB" />
             <Text className="ml-2 text-indigo-700">Fetching in the background</Text>
           </View>
         )}

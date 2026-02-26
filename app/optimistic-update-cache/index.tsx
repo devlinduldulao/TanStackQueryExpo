@@ -67,7 +67,7 @@ export default function MoviesScreen() {
   };
 
   const renderMovieItem = ({ item: movie }: { item: Movie }) => (
-    <View key={movie.id} className="mb-6 flex-row items-start gap-4 rounded-lg bg-white p-4 shadow">
+    <View key={movie.id} className="mb-6 flex-row items-start gap-4 rounded-lg bg-expo-deepNavy p-4 shadow">
       <View>
         <Image
           source={{ uri: movie.imageUrl }}
@@ -120,7 +120,7 @@ export default function MoviesScreen() {
         <Text className="text-lg">
           This week
           {moviesQuery.isFetching && (
-            <Text className="text-gray-600"> (fetching in the background)</Text>
+            <Text className="text-expo-gray-100"> (fetching in the background)</Text>
           )}
         </Text>
       </View>
@@ -150,7 +150,7 @@ export default function MoviesScreen() {
 
       {deleteMovieMutation.isPending && (
         <View className="flex items-center justify-center">
-          <ActivityIndicator size="small" color="#f97316" />
+          <ActivityIndicator size="small" color="#4630EB" />
           <Text className="ml-2">Deleting...</Text>
         </View>
       )}
