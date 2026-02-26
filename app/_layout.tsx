@@ -94,8 +94,17 @@ export default function RootLayout() {
                 borderBottomColor: expoColors.darkBlue,
               },
               drawerActiveTintColor: expoColors.white,
-              drawerInactiveTintColor: expoColors.gray50,
+              drawerInactiveTintColor: 'rgba(224, 224, 224, 0.78)',
               drawerActiveBackgroundColor: expoColors.blue,
+              drawerLabelStyle: {
+                fontWeight: '600',
+                fontSize: 15,
+              },
+              drawerItemStyle: {
+                borderRadius: 12,
+                marginHorizontal: 8,
+                marginVertical: 4,
+              },
               drawerStyle: {
                 backgroundColor: expoColors.deepNavy,
                 borderRightColor: expoColors.blue,
