@@ -5,6 +5,8 @@ const ReactQueryDevTools = () => {
   if (Platform.OS == 'web') {
     return <ReactQueryDevtools initialIsOpen={false} />;
   }
+
+  return null;
 };
 
 export default ReactQueryDevTools;

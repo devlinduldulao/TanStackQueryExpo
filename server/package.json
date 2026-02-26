@@ -11,8 +11,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@tanstack/query-broadcast-client-experimental": "^5.90.19",
-    "cors": "^2.8.5",
+    "@tanstack/query-broadcast-client-experimental": "^5.90.20",
+    "cors": "^2.8.6",
     "express": "^5.2.1"
   }
 }

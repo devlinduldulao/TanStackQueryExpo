@@ -47,22 +47,24 @@ const codemotionColors = {
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
-export default function RootLayout() {
-  // Set up the sync hook - automatically disabled in production!
+
+function QuerySyncExternal() {
   useSyncQueriesExternal({
     queryClient,
-    socketURL: 'http://localhost:42831', // Default port for React Native DevTools
-    deviceName: Platform?.OS || 'web', // Platform detection
-    platform: Platform?.OS || 'web', // Use appropriate platform identifier
-    deviceId: Platform?.OS || 'web', // Use a PERSISTENT identifier (see note below)
+    socketURL: 'http://localhost:42831',
+    deviceName: Platform?.OS || 'web',
+    platform: Platform?.OS || 'web',
+    deviceId: Platform?.OS || 'web',
     extraDeviceInfo: {
-      // Optional additional info about your device
       appVersion: '1.0.0',
-      // Add any relevant platform info
     },
     enableLogs: false,
   });
 
+  return null;
+}
+
+export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -81,6 +83,7 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        {Platform.OS === 'web' ? <QuerySyncExternal /> : null}
         <GestureHandlerRootView style={{ flex: 1 }}>
           <Drawer
             screenOptions={{
