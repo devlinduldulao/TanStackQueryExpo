@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Codemotion Conference Theme Variables */
+/* Brand Theme Variables */
 :root {
   /* Grays */
   --bricks-color-46121d: #e0e0e0;
@@ -35,7 +35,7 @@
   --bricks-color-4efe0d: #8bc34a;
   --bricks-color-1a5ae8: #cddc39;
   
-  /* Codemotion Brand Colors */
+  /* Brand Colors */
   --bricks-color-dsqzwd: #0e1e30; /* Navy */
   --bricks-color-awxtcl: #ff5c00; /* Orange */
   --bricks-color-hbxsgm: #ffffff; /* White */

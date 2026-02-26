@@ -14,7 +14,7 @@ module.exports = {
         spin: 'spin 1s linear infinite',
       },
       colors: {
-        // Codemotion Conference Colors
+        // Conference Colors
         codemotion: {
           // Primary colors
           navy: '#0e1e30', // Main dark blue background
@@ -68,7 +68,7 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/container-queries'),
   ],
-  corePlugin: {
+  corePlugins: {
     textOpacity: true,
   },
 };
