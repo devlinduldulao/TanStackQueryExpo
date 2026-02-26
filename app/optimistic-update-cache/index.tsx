@@ -96,28 +96,28 @@ export default function MoviesScreen() {
         <Text
           className={
             queryClient.getQueryData(['movie', movie.id])
-              ? 'font-bold text-indigo-500'
-              : 'font-bold'
+              ? 'font-bold text-indigo-400'
+              : 'font-bold text-expo-white'
           }>
           {movie.title} ({movie.year})
         </Text>
-        <Text className="text-orange-500">rating: {movie.rate}/10</Text>
-        <Text className="mt-1">{movie.description}</Text>
-        <Text className="mt-1">Director: {movie.director}</Text>
-        <Text className="mt-1">Duration: {movie.duration}</Text>
+        <Text className="text-expo-yellow">rating: {movie.rate}/10</Text>
+        <Text className="mt-1 text-expo-gray-50">{movie.description}</Text>
+        <Text className="mt-1 text-expo-gray-50">Director: {movie.director}</Text>
+        <Text className="mt-1 text-expo-gray-50">Duration: {movie.duration}</Text>
       </View>
     </View>
   );
 
   return (
-    <View className="flex-1 p-4">
+    <View className="flex-1 bg-expo-navy p-4">
       <Stack.Screen
         options={{
           title: 'Movie Feed History',
         }}
       />
       <View className="mb-4">
-        <Text className="text-lg">
+        <Text className="text-lg text-expo-white">
           This week
           {moviesQuery.isFetching && (
             <Text className="text-expo-gray-100"> (fetching in the background)</Text>
@@ -127,15 +127,15 @@ export default function MoviesScreen() {
 
       {moviesQuery.status === 'pending' && (
         <View className="flex flex-row items-center justify-center">
-          <Text>
-            Loading. Please wait. <Text className="text-orange-600">(one-time only)</Text>
+          <Text className="text-expo-white">
+            Loading. Please wait. <Text className="text-expo-yellow">(one-time only)</Text>
           </Text>
         </View>
       )}
 
       {moviesQuery.status === 'error' && (
         <View className="flex flex-row items-center justify-center">
-          <Text>Error: {moviesQuery.error.message}</Text>
+          <Text className="text-red-400">Error: {moviesQuery.error.message}</Text>
         </View>
       )}
 
@@ -151,7 +151,7 @@ export default function MoviesScreen() {
       {deleteMovieMutation.isPending && (
         <View className="flex items-center justify-center">
           <ActivityIndicator size="small" color="#4630EB" />
-          <Text className="ml-2">Deleting...</Text>
+          <Text className="ml-2 text-expo-white">Deleting...</Text>
         </View>
       )}
     </View>

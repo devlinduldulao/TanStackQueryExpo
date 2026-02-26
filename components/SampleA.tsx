@@ -17,8 +17,8 @@ export default function SampleA() {
 
   return (
     <View className="p-4">
-      <View className="flex-row items-center p-4">
-        <Text className="mb-2 text-xl font-bold">Sample-A Component</Text>
+      <View className="flex-row items-center rounded-xl bg-expo-deepNavy p-4">
+        <Text className="mb-2 text-xl font-bold text-expo-white">Sample-A Component</Text>
         {myQuery.status === 'pending' && <PulsingDot />}
       </View>
     </View>

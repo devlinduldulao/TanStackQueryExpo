@@ -37,17 +37,20 @@ export default function PollingScreen() {
           title: 'List of To Dos',
         }}
       />
-      <Text className="mb-4 text-lg font-bold">
+      <Text className="mb-4 text-lg font-bold text-expo-white">
         Auto Refetch with polling interval set to {intervalMs} ms
       </Text>
 
       <View className="mb-5 flex-row items-center">
-        <Text className="mr-2">Query Interval speed (ms):</Text>
+        <Text className="mr-2 text-expo-gray-50">Query Interval speed (ms):</Text>
         <TextInput
           value={inputValue}
           onChangeText={handleIntervalChange}
           keyboardType="numeric"
-          className={`border ${isValidInput ? 'bg-expo-deepNavy' : 'bg-red-200'} w-20 rounded border-gray-300 px-2 py-1 text-expo-white`}
+          className={`w-20 rounded border px-2 py-1 text-expo-white ${isValidInput
+              ? 'border-expo-gray-100 bg-expo-deepNavy'
+              : 'border-red-500 bg-red-900/40'
+            }`}
         />
       </View>
 
@@ -62,13 +65,13 @@ export default function PollingScreen() {
         )}
       />
 
-      <Text className="mb-4 mt-2 text-lg font-bold">Todo List</Text>
+      <Text className="mb-4 mt-2 text-lg font-bold text-expo-white">Todo List</Text>
 
       <LegendList
         data={todoListQuery?.data || []}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item, index }) => (
-          <Text className="py-1">
+          <Text className="py-1 text-expo-gray-50">
             {index + 1}. {item.title}
           </Text>
         )}

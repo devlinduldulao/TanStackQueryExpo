@@ -93,16 +93,16 @@ export default function RootLayout() {
                 borderBottomWidth: 1,
                 borderBottomColor: expoColors.darkBlue,
               },
-              drawerActiveTintColor: expoColors.orange,
+              drawerActiveTintColor: expoColors.white,
               drawerInactiveTintColor: expoColors.gray50,
-              drawerActiveBackgroundColor: expoColors.darkBlue,
+              drawerActiveBackgroundColor: expoColors.blue,
               drawerStyle: {
                 backgroundColor: expoColors.deepNavy,
                 borderRightColor: expoColors.blue,
                 borderRightWidth: 2,
               },
               // Dark overlay to match the theme
-              overlayColor: 'rgba(14, 30, 48, 0.5)',
+              overlayColor: 'rgba(0, 0, 32, 0.6)',
             }}
             // Set default state to closed to avoid overlay issues
             initialRouteName="index"

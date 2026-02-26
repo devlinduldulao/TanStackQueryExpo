@@ -15,9 +15,9 @@ export default function MovieScreen() {
 
   if (movieQuery.status === 'pending') {
     return (
-      <View className="flex-1 items-center justify-center p-4">
-        <Text>
-          Loading. Please wait. <Text className="text-orange-300">(one-time only)</Text>
+      <View className="flex-1 items-center justify-center bg-expo-navy p-4">
+        <Text className="text-expo-white">
+          Loading. Please wait. <Text className="text-expo-yellow">(one-time only)</Text>
         </Text>
       </View>
     );
@@ -25,8 +25,8 @@ export default function MovieScreen() {
 
   if (movieQuery.status === 'error') {
     return (
-      <View className="flex-1 items-center justify-center p-4">
-        <Text>Error: {movieQuery.error.message}</Text>
+      <View className="flex-1 items-center justify-center bg-expo-navy p-4">
+        <Text className="text-red-400">Error: {movieQuery.error.message}</Text>
       </View>
     );
   }
@@ -38,7 +38,7 @@ export default function MovieScreen() {
   }
 
   return (
-    <View className="flex-1 p-4">
+    <View className="flex-1 bg-expo-navy p-4">
       <Stack.Screen
         options={{
           title: `Movie ${movie.title}`,
@@ -50,22 +50,22 @@ export default function MovieScreen() {
         <View className="flex-1 flex-wrap justify-start">
           <View className="flex-wrap gap-10">
             <Link href={{ pathname: '/optimistic-update-cache/[id]', params: { id: movie.id } }}>
-              <Text className="text-lg font-bold">
+              <Text className="text-lg font-bold text-expo-white">
                 {movie.title} ({movie.year})
               </Text>
             </Link>
           </View>
           <View>
-            <Text className="text-orange-500">rating: {movie.rate}/10</Text>
+            <Text className="text-expo-yellow">rating: {movie.rate}/10</Text>
           </View>
           <View>
-            <Text>{movie.description}</Text>
+            <Text className="text-expo-gray-50">{movie.description}</Text>
           </View>
           <View>
-            <Text>Director: {movie.director}</Text>
+            <Text className="text-expo-gray-50">Director: {movie.director}</Text>
           </View>
           <View>
-            <Text>Duration: {movie.duration}</Text>
+            <Text className="text-expo-gray-50">Duration: {movie.duration}</Text>
           </View>
         </View>
       </View>
@@ -74,7 +74,7 @@ export default function MovieScreen() {
         {movieQuery.isFetching && (
           <View className="flex-row items-center">
             <ActivityIndicator size="small" color="#4630EB" />
-            <Text className="ml-2">Fetching in the background</Text>
+            <Text className="ml-2 text-expo-white">Fetching in the background</Text>
           </View>
         )}
       </View>

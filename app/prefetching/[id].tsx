@@ -13,7 +13,7 @@ export default function ReportScreen() {
   });
 
   return (
-    <View className="flex-1 p-4">
+    <View className="flex-1 bg-expo-navy p-4">
       <Stack.Screen
         options={{
           title: `Report ${id}`,
@@ -22,8 +22,8 @@ export default function ReportScreen() {
       />
 
       {reportQuery.isPending && (
-        <Text className="text-base">
-          Loading. Please wait. <Text className="text-pink-700">(one-time only)</Text>
+        <Text className="text-base text-expo-white">
+          Loading. Please wait. <Text className="text-expo-yellow">(one-time only)</Text>
         </Text>
       )}
 
@@ -35,7 +35,7 @@ export default function ReportScreen() {
         <View className="flex flex-row items-start gap-6">
           <View className="flex flex-col flex-wrap justify-start">
             <View className="flex flex-wrap gap-10">
-              <Text>{JSON.stringify(reportQuery.data, null, 2)}</Text>
+              <Text className="text-expo-gray-50">{JSON.stringify(reportQuery.data, null, 2)}</Text>
             </View>
           </View>
         </View>
@@ -45,7 +45,7 @@ export default function ReportScreen() {
         {reportQuery.isFetching && !reportQuery.isPending && (
           <View className="flex-row items-center">
             <ActivityIndicator size="small" color="#4630EB" />
-            <Text className="ml-2 text-indigo-700">Fetching in the background</Text>
+            <Text className="ml-2 text-expo-white">Fetching in the background</Text>
           </View>
         )}
       </View>

@@ -455,7 +455,7 @@ export default function StreamedQueryScreen() {
             </TouchableOpacity>
           ))}
         </View>
-        <Text className="mt-2 text-xs text-expo-gray-200">
+        <Text className="mt-2 text-xs text-expo-gray-100">
           {refetchMode === 'reset' && '🔄 Clears data and goes to pending on refetch'}
           {refetchMode === 'append' && '➕ Appends new data to existing'}
           {refetchMode === 'replace' && '🔁 Replaces all data when stream ends'}
@@ -483,7 +483,7 @@ export default function StreamedQueryScreen() {
                   } p-3 shadow-sm`}>
                 <Text className="mr-3 text-2xl">{sample.icon}</Text>
                 <Text
-                  className={`flex-1 ${serverStatus === 'online' ? 'text-expo-white' : 'text-expo-gray-200'
+                  className={`flex-1 ${serverStatus === 'online' ? 'text-expo-white' : 'text-expo-gray-100'
                     }`}>
                   {sample.text}
                 </Text>
@@ -543,7 +543,7 @@ export default function StreamedQueryScreen() {
 
                     {/* Stream Status */}
                     <View className="mt-2 flex-row items-center justify-between px-2">
-                      <Text className="text-xs text-expo-gray-200">
+                      <Text className="text-xs text-expo-gray-100">
                         {message.streaming
                           ? `Streaming... (${Array.isArray(message.content) ? message.content.length : 0} chunks)`
                           : `Complete (${Array.isArray(message.content) ? message.content.length : 0} chunks)`}

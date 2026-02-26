@@ -43,20 +43,20 @@ export default function ReportsScreen() {
       onLayout={() => {
         if (Number(item.id) < 15) handlePreFetch(item.id);
       }}
-      className="border-b border-gray-200 py-3">
-      <Text className="text-lg text-blue-700">{item.title}</Text>
+      className="border-b border-expo-gray-50 py-3">
+      <Text className="text-lg text-expo-white">{item.title}</Text>
     </Link>
   );
 
   return (
-    <View className="flex-1 p-4">
+    <View className="flex-1 bg-expo-navy p-4">
       <Stack.Screen
         options={{
           title: 'Reports',
         }}
       />
 
-      {reportsQuery.isPending && <Text>Loading reports...</Text>}
+      {reportsQuery.isPending && <Text className="text-expo-gray-50">Loading reports...</Text>}
 
       {reportsQuery.isError && (
         <Text className="text-red-400">Error loading reports: {reportsQuery.error?.message}</Text>
