@@ -37,7 +37,7 @@
     "expo-symbols": "~55.0.4",
     "expo-system-ui": "~55.0.9",
     "expo-web-browser": "~55.0.9",
-    "nativewind": "latest",
+    "nativewind": "^4.2.2",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-native": "0.83.2",
