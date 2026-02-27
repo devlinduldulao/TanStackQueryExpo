@@ -13,7 +13,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ReactQueryDevTools from '@/components/providers/ReactQueryDevTools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useSyncQueriesExternal } from 'react-query-external-sync';
-import { Platform } from 'react-native';
+import { LogBox, Platform } from 'react-native';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -69,6 +69,15 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+
+  useEffect(() => {
+    // This warning is triggered by an installed dependency that touches
+    // react-native's deprecated SafeAreaView export. App code uses
+    // react-native-safe-area-context already.
+    LogBox.ignoreLogs([
+      'SafeAreaView has been deprecated and will be removed in a future release.',
+    ]);
+  }, []);
 
   useEffect(() => {
     if (loaded) {

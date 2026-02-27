@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { LegendList } from '@legendapp/list';
+import { LegendList } from '@legendapp/list/react-native';
 import { cssInterop } from 'nativewind';
 
 cssInterop(LegendList, {

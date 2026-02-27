@@ -6,7 +6,7 @@ import movieService from '@/services/movie';
 import { Movie } from '@/models';
 import Octicons from '@expo/vector-icons/Octicons';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { LegendList } from '@legendapp/list';
+import { LegendList } from '@legendapp/list/react-native';
 
 export default function MoviesScreen() {
   const queryClient = useQueryClient();

@@ -5,7 +5,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { useQuery } from '@tanstack/react-query';
 import { cn } from '@/utilities/style';
 import todoService from '@/services/todo';
-import { LegendList } from '@legendapp/list';
+import { LegendList } from '@legendapp/list/react-native';
 
 export default function PollingScreen() {
   const [intervalMs, setIntervalMs] = useState(10000);

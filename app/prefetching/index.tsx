@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link, Stack } from 'expo-router';
 import reportService from '@/services/report';
 import { Report } from '@/models';
-import { LegendList } from '@legendapp/list';
+import { LegendList } from '@legendapp/list/react-native';
 import { cssInterop } from 'nativewind';
 
 cssInterop(LegendList, {
